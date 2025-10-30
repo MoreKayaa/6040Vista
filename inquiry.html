@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Inquiry | 6040 Vista</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container nav-container">
+            <div class="logo"><a href="index.html">6040 Vista</a></div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="units.html" class="nav-link">Unit Types</a></li>
+                <li><a href="amenities.html" class="nav-link">Amenities</a></li>
+                <li><a href="location.html" class="nav-link">Location</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="inquiry.html" class="btn-primary-nav active">Investment Inquiry</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+    
+    <section style="padding: 150px 0 80px; background: linear-gradient(135deg, var(--charcoal), var(--dark-brown)); color: var(--white); text-align: center;">
+        <div class="container">
+            <span class="section-tag light">Investment Opportunity</span>
+            <h1 style="color: var(--white);">Secure Your Investment Today</h1>
+            <p style="max-width: 700px; margin: 1.5rem auto; font-size: 1.25rem; color: var(--cream);">Properties start from KSh 10,000,000. Early investors benefit from pre-completion pricing and guaranteed appreciation.</p>
+        </div>
+    </section>
+
+    <section style="padding: 80px 0; background: var(--white);">
+        <div class="container" style="max-width: 900px;">
+            <div style="background: var(--cream); padding: 3rem; border-radius: 12px; box-shadow: 0 15px 50px var(--shadow);">
+                <h2 style="margin-bottom: 1rem;">Investment Inquiry Form</h2>
+                <p style="margin-bottom: 2.5rem; color: var(--text-secondary);">Complete this form and our investment team will contact you within 24 hours with detailed information tailored to your goals.</p>
+                
+                <form id="investmentForm" style="display: flex; flex-direction: column; gap: 1.75rem;">
+                    <!-- Personal Information -->
+                    <div style="background: var(--white); padding: 2rem; border-radius: 8px;">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--bronze);">Personal Information</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Full Name *</label>
+                                <input type="text" name="name" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body);">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email Address *</label>
+                                <input type="email" name="email" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body);">
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Phone Number *</label>
+                                <input type="tel" name="phone" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body);">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Preferred Contact Method *</label>
+                                <select name="contact_method" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body);">
+                                    <option value="">Select...</option>
+                                    <option>Phone Call</option>
+                                    <option>WhatsApp</option>
+                                    <option>Email</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investment Details -->
+                    <div style="background: var(--white); padding: 2rem; border-radius: 8px;">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--bronze);">Investment Details</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Investment Budget Range (KSh) *</label>
+                                <select name="budget" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body);">
+                                    <option value="">Select...</option>
+                                    <option>10M - 15M</option>
+                                    <option>15M - 20M</option>
+                                    <option>20M - 25M</option>
+                                    <option>25M+</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Preferred Unit Type *</label>
+                                <select name="unit_type" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body);">
+                                    <option value="">Select...</option>
+                                    <option>2 Bedroom A (101m²)</option>
+                                    <option>2 Bedroom B (101m²)</option>
+                                    <option>3 Bedroom (135m²)</option>
+                                    <option>3 Bedroom + DSQ (149m²)</option>
+                                    <option>Undecided - Need Guidance</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Investment Purpose *</label>
+                            <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="radio" name="purpose" value="rental" required>
+                                    <span>Rental Income</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="radio" name="purpose" value="own_use" required>
+                                    <span>Own Use</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="radio" name="purpose" value="resale" required>
+                                    <span>Resale</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="radio" name="purpose" value="mixed" required>
+                                    <span>Mixed Strategy</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div style="background: var(--white); padding: 2rem; border-radius: 8px;">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--bronze);">Additional Information</h3>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">How did you hear about 6040 Vista? *</label>
+                            <select name="source" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body);">
+                                <option value="">Select...</option>
+                                <option>Google Search</option>
+                                <option>Social Media (Facebook/Instagram)</option>
+                                <option>Referral from Friend/Family</option>
+                                <option>Real Estate Agent</option>
+                                <option>Property Website</option>
+                                <option>Advertisement</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Questions or Special Requirements</label>
+                            <textarea name="message" rows="4" placeholder="Tell us about your investment goals, timeline, or any specific questions..." style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body); resize: vertical;"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Privacy -->
+                    <div style="background: rgba(201, 168, 105, 0.1); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--gold);">
+                        <label style="display: flex; align-items: start; gap: 0.75rem; cursor: pointer;">
+                            <input type="checkbox" name="privacy" required style="margin-top: 4px;">
+                            <span style="font-size: 0.95rem; line-height: 1.6;">I consent to 6040 Vista contacting me regarding this investment inquiry. My information will be kept confidential and used solely for this purpose.</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 1.25rem; font-size: 1.125rem;">Submit Investment Inquiry</button>
+                    
+                    <p style="text-align: center; color: var(--text-light); font-size: 0.95rem; margin: 0;">Our investment team will respond within 24 hours with a personalized consultation.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Signals -->
+    <section style="padding: 80px 0; background: var(--off-white);">
+        <div class="container" style="text-align: center;">
+            <h2 style="margin-bottom: 2rem;">Why Investors Choose 6040 Vista</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
+                <div>
+                    <div style="font-size: 3rem; color: var(--gold); font-weight: 700; margin-bottom: 0.5rem;">8-12%</div>
+                    <p style="color: var(--text-secondary);">Annual Rental Yield</p>
+                </div>
+                <div>
+                    <div style="font-size: 3rem; color: var(--gold); font-weight: 700; margin-bottom: 0.5rem;">100M</div>
+                    <p style="color: var(--text-secondary);">To Northern Bypass</p>
+                </div>
+                <div>
+                    <div style="font-size: 3rem; color: var(--gold); font-weight: 700; margin-bottom: 0.5rem;">Phase 1</div>
+                    <p style="color: var(--text-secondary);">Early Pricing Available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column"><h3>6040 Vista</h3><p>Gitere, Northern Bypass, Nairobi</p></div>
+                <div class="footer-column"><h4>Contact</h4><ul class="footer-contact"><li><a href="mailto:vista6040sales@gmail.com">vista6040sales@gmail.com</a></li><li><a href="tel:+254745118118">+254 745 118 118</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2025 6040 Vista. All rights reserved.</p></div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script>
+    document.getElementById('investmentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your investment inquiry!\n\nOur team will review your submission and contact you within 24 hours via your preferred method.\n\n(Note: Form backend will be configured on cPanel with automated email responses and CRM integration)');
+        this.reset();
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | 6040 Vista</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container nav-container">
+            <div class="logo"><a href="index.html">6040 Vista</a></div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="units.html" class="nav-link">Unit Types</a></li>
+                <li><a href="amenities.html" class="nav-link">Amenities</a></li>
+                <li><a href="location.html" class="nav-link">Location</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                <li><a href="inquiry.html" class="btn-primary-nav">Investment Inquiry</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+    
+    <section style="padding: 150px 0 80px; background: linear-gradient(135deg, var(--cream), var(--beige)); text-align: center;">
+        <div class="container">
+            <span class="section-tag">Get In Touch</span>
+            <h1>Contact Our Investment Team</h1>
+            <p style="max-width: 700px; margin: 1.5rem auto; font-size: 1.25rem;">We're here to answer your questions and guide you through your investment journey.</p>
+        </div>
+    </section>
+
+    <section style="padding: 80px 0; background: var(--white);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+                <div>
+                    <h2>Send Us a Message</h2>
+                    <p style="margin-bottom: 2rem;">Fill out the form and our team will respond within 24 hours.</p>
+                    <form id="contactForm" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Your Name *</label>
+                            <input type="text" name="name" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body); font-size: 1rem;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email Address *</label>
+                            <input type="email" name="email" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body); font-size: 1rem;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Phone Number *</label>
+                            <input type="tel" name="phone" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body); font-size: 1rem;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Subject</label>
+                            <select name="subject" style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body); font-size: 1rem;">
+                                <option>General Inquiry</option>
+                                <option>Schedule Viewing</option>
+                                <option>Request Brochure</option>
+                                <option>Payment Plans</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Your Message *</label>
+                            <textarea name="message" required rows="5" style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body); font-size: 1rem; resize: vertical;"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+                <div>
+                    <h2>Contact Information</h2>
+                    <div style="background: var(--cream); padding: 2.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <h3>Sales Office</h3>
+                        <p style="margin: 1rem 0; line-height: 1.8;">
+                            <strong>Sales Manager:</strong> Ren Yuan<br>
+                            <strong>Email:</strong> <a href="mailto:vista6040sales@gmail.com" style="color: var(--bronze);">vista6040sales@gmail.com</a><br>
+                            <strong>Phone:</strong> <a href="tel:+254745118118" style="color: var(--bronze);">+254 745 118 118</a><br>
+                            <strong>Technical:</strong> <a href="tel:+254759681867" style="color: var(--bronze);">+254 759 681 867</a>
+                        </p>
+                    </div>
+                    <div style="background: var(--cream); padding: 2.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <h3>Project Location</h3>
+                        <p style="margin: 1rem 0;">
+                            Gitere, Northern Bypass<br>
+                            Nairobi, Kenya<br><br>
+                        </p>
+                    </div>
+                    <div style="background: var(--cream); padding: 2.5rem; border-radius: 12px;">
+                        <h3>Office Hours</h3>
+                        <p style="margin: 1rem 0;">
+                            <strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM<br>
+                            <strong>Saturday:</strong> 10:00 AM - 4:00 PM<br>
+                            <strong>Sunday:</strong> By Appointment Only
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column"><h3>6040 Vista</h3><p>Gitere, Northern Bypass, Nairobi</p></div>
+                <div class="footer-column"><h4>Contact</h4><ul class="footer-contact"><li><a href="mailto:vista6040sales@gmail.com">vista6040sales@gmail.com</a></li><li><a href="tel:+254745118118">+254 745 118 118</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2025 6040 Vista. All rights reserved.</p></div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! Our team will contact you within 24 hours.\n\n(Note: Form backend will be configured on cPanel with SMTP integration)');
+        this.reset();
+    });
+    </script>
+</body>
+</html>
