@@ -6,9 +6,16 @@
     <meta name="description" content="6040 Vista - Prime investment opportunity in Gitere, Northern Bypass, Nairobi. Modern 2 & 3 bedroom apartments with exceptional ROI potential.">
     <meta name="keywords" content="Nairobi apartments, Northern Bypass real estate, Gitere property investment, 6040 Vista, Kenya real estate investment">
     <title>6040 Vista - Prime Real Estate Investment | Northern Bypass, Nairobi</title>
+    
+    <!-- Fixed Favicon Implementation -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
+
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +26,12 @@
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <div class="logo">
-                <a href="index.html">6040 Vista</a>
+                <a href="index.html">
+                    <img src="images/6040V.png" 
+                        alt="6040 Vista Logo" 
+                        class="logo-img"
+                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTUwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjOEI0NTEzIiByeD0iOCIvPgo8dGV4dCB4PSI3NSIgeT0iMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCI+NjA0MDwvdGV4dD4KPC9zdmc+'">
+                </a>
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link active">Home</a></li>
@@ -199,7 +211,7 @@
                         <!-- Slide 1: 2 Bedroom A -->
                         <div class="carousel-slide">
                             <div class="carousel-slide-image">
-                                <img src="images/Living Room Interior Render.webp" alt="2 Bedroom Unit A" loading="lazy">
+                                <img src="images/2bed-a.webp" alt="2 Bedroom Unit A" loading="eager">
                             </div>
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">2 Bedroom A</h3>
@@ -219,7 +231,7 @@
                         <!-- Slide 2: 2 Bedroom B -->
                         <div class="carousel-slide">
                             <div class="carousel-slide-image">
-                                <img src="images/Kitchen Interior Render.webp" alt="2 Bedroom Unit B" loading="lazy">
+                                <img src="images/2bed-b.webp" alt="2 Bedroom Unit B" loading="eager">
                             </div>
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">2 Bedroom B</h3>
@@ -239,7 +251,7 @@
                         <!-- Slide 3: 3 Bedroom -->
                         <div class="carousel-slide">
                             <div class="carousel-slide-image">
-                                <img src="images/Bedroom Interior Render.webp" alt="3 Bedroom Unit" loading="lazy">
+                                <img src="images/3bed.webp" alt="3 Bedroom Unit" loading="eager">
                             </div>
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">3 Bedroom</h3>
@@ -260,7 +272,7 @@
                         <div class="carousel-slide" style="border: 3px solid var(--gold);">
                             <div style="position: absolute; top: 1rem; right: 1rem; background: var(--gold); color: var(--white); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 700; z-index: 10; font-size: 0.875rem;">Most Popular</div>
                             <div class="carousel-slide-image">
-                                <img src="images/Bathroom Interior Render.webp" alt="3 Bedroom + DSQ" loading="lazy">
+                                <img src="images/3bed-dsq.webp" alt="3 Bedroom + DSQ" loading="eager">
                             </div>
                             <div class="carousel-slide-content">
                                 <h3 class="carousel-slide-title">3 Bedroom + DSQ</h3>
@@ -453,9 +465,7 @@
                     <a href="location.html" class="btn-primary">View Interactive Map</a>
                 </div>
                 <div class="location-map">
-                    <div class="map-placeholder">
-                        <img src="images/location-map.webp" alt="6040 Vista Location Map" loading="lazy">
-                    </div>
+                    <div id="homeMapPreview"></div>
                 </div>
             </div>
         </div>
@@ -561,6 +571,7 @@
     </footer>
 
     <!-- <script src="js/main.js"></script> -->
+    <script src="js/interactive-map.js"></script>
     <script src="js/loader.js"></script>
     <script src="js/number-animations.js"></script>
     <script src="js/carousel.js"></script>

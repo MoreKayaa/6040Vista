@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="About 6040 Vista - Discover why this premium development in Gitere represents Nairobi's most compelling real estate investment opportunity.">
     <title>About 6040 Vista | Premium Investment Opportunity Nairobi</title>
+    
+    <!-- Fixed Favicon Implementation -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
+
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -215,7 +222,12 @@
     <nav class="navbar scrolled" id="navbar">
         <div class="container nav-container">
             <div class="logo">
-                <a href="index.html">6040 Vista</a>
+                <a href="index.html">
+                    <img src="images/6040V.png" 
+                        alt="6040 Vista Logo" 
+                        class="logo-img"
+                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTUwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjOEI0NTEzIiByeD0iOCIvPgo8dGV4dCB4PSI3NSIgeT0iMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCI+NjA0MDwvdGV4dD4KPC9zdmc+'">
+                </a>
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
@@ -360,7 +372,7 @@
             </div>
             <div class="value-grid">
                 <div class="value-item">
-                    <div class="value-number">8-12%</div>
+                    <div class="value-number"><span data-animate-number="8" data-suffix="%" data-duration="800">8</span>-<span data-animate-number="12" data-suffix="%" data-duration="800">12</span>%</div>
                     <div class="value-label">Annual Rental Yield</div>
                     <p style="color: var(--sand); font-size: 0.95rem; margin-top: 0.5rem;">Strong tenant demand ensures consistent passive income</p>
                 </div>

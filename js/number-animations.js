@@ -45,7 +45,7 @@ class NumberAnimator {
     
     animateNumber(element) {
         const targetValue = parseFloat(element.getAttribute('data-animate-number'));
-        const duration = parseInt(element.getAttribute('data-duration')) || 1000; // Default 1 second
+        const duration = parseInt(element.getAttribute('data-duration')) || 2000; // Default 1 second
         const decimals = this.getDecimalPlaces(targetValue);
         const prefix = element.getAttribute('data-prefix') || '';
         const suffix = element.getAttribute('data-suffix') || '';

@@ -1,124 +1,160 @@
 /* ============================================
-   6040 VISTA - BRANDED LOADER
-   Smooth loading experience with logo animation
+   6040 VISTA - SVG LOGO PROGRESS LOADER
+   Logo-shaped progress bar with smooth animation
    ============================================ */
 
 class SiteLoader {
     constructor() {
         this.loader = null;
-        this.loadingProgress = 0;
+        this.progressElement = null;
+        this.logoSVG = null;
         this.init();
     }
     
     init() {
-        // Create loader HTML
-        this.createLoader();
-        
-        // Start loading animation
-        this.startLoading();
-        
-        // Track page load
+        this.createSVGLoader();
         this.trackPageLoad();
     }
     
-    createLoader() {
-        // Create loader overlay
+    createSVGLoader() {
+        // Create the SVG logo with progress animation
+        // This uses a simplified approach that works with any logo
         const loaderHTML = `
             <div id="siteLoader" class="site-loader">
                 <div class="loader-content">
-                    <div class="loader-logo">
-                        <img src="images/6040.png" alt="6040 Vista" class="loader-logo-img">
+                    <div class="svg-logo-container">
+                        <!-- Your logo will be inserted here -->
+                        <div class="logo-placeholder">
+                            <svg viewBox="0 0 400 100" class="logo-svg">
+                                <!-- Simplified 6040 Vista representation -->
+                                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" 
+                                      font-family="Playfair Display, serif" font-size="24" font-weight="700" 
+                                      fill="var(--bronze)">6040 Vista</text>
+                            </svg>
+                        </div>
+                        <!-- Progress bar that fills the logo shape -->
+                        <div class="logo-progress-overlay">
+                            <div class="progress-fill" id="logoProgressFill"></div>
+                        </div>
                     </div>
                     <div class="loader-text">
-                        <h2>6040 Vista</h2>
                         <p>Loading your investment opportunity...</p>
                     </div>
-                    <div class="loader-progress-bar">
-                        <div class="loader-progress-fill" id="loaderProgressFill"></div>
-                    </div>
-                    <div class="loader-percentage" id="loaderPercentage">0%</div>
                 </div>
             </div>
         `;
         
-        // Insert at beginning of body
         document.body.insertAdjacentHTML('afterbegin', loaderHTML);
         this.loader = document.getElementById('siteLoader');
-        this.progressFill = document.getElementById('loaderProgressFill');
-        this.percentage = document.getElementById('loaderPercentage');
+        this.progressElement = document.getElementById('logoProgressFill');
+        
+        // If you have the actual SVG file, replace the placeholder
+        this.loadActualLogo();
     }
     
-    startLoading() {
-        // Simulate progressive loading
-        const loadingInterval = setInterval(() => {
-            // Increase progress
-            this.loadingProgress += Math.random() * 15;
-            
-            // Cap at 90% until actual page load
-            if (this.loadingProgress > 90) {
-                this.loadingProgress = 90;
-            }
-            
-            this.updateProgress(this.loadingProgress);
-            
-            // If reached 90%, slow down
-            if (this.loadingProgress >= 90) {
-                clearInterval(loadingInterval);
-            }
-        }, 200);
+    loadActualLogo() {
+        // Try to load the actual logo SVG if it exists
+        const logoImg = document.querySelector('.navbar .logo-img');
+        if (logoImg && logoImg.src) {
+            // Use the existing logo image as fallback
+            const logoPlaceholder = this.loader.querySelector('.logo-placeholder');
+            logoPlaceholder.innerHTML = `<img src="${logoImg.src}" alt="6040 Vista" style="width: 100%; height: auto; filter: opacity(0.7);">`;
+        }
     }
     
     trackPageLoad() {
-        // Complete when everything is loaded
-        window.addEventListener('load', () => {
-            // Quick jump to 100%
-            this.completeLoading();
-        });
+        let progress = 0;
+        const images = document.querySelectorAll('img');
+        let loadedImages = 0;
+        const totalImages = images.length;
         
-        // Fallback: Force complete after 5 seconds
+        // Simulate initial progress
+        const initialProgress = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress > 70) {
+                progress = 70;
+                clearInterval(initialProgress);
+            }
+            this.updateProgress(progress);
+        }, 100);
+        
+        // Track actual image loading
+        if (totalImages > 0) {
+            images.forEach(img => {
+                if (img.complete) {
+                    loadedImages++;
+                } else {
+                    img.addEventListener('load', () => {
+                        loadedImages++;
+                        this.checkCompletion(loadedImages, totalImages);
+                    });
+                    img.addEventListener('error', () => {
+                        loadedImages++;
+                        this.checkCompletion(loadedImages, totalImages);
+                    });
+                }
+            });
+            
+            // Check if already loaded
+            this.checkCompletion(loadedImages, totalImages);
+        } else {
+            // No images, complete quickly
+            setTimeout(() => this.completeLoading(), 800);
+        }
+        
+        // Fallback completion
         setTimeout(() => {
-            if (this.loader && this.loader.classList.contains('site-loader')) {
+            if (this.loader && !this.loader.classList.contains('loaded')) {
                 this.completeLoading();
             }
         }, 5000);
     }
     
+    checkCompletion(loadedImages, totalImages) {
+        if (loadedImages >= totalImages) {
+            setTimeout(() => this.completeLoading(), 300);
+        }
+    }
+    
+    updateProgress(progress) {
+        const clampedProgress = Math.min(Math.max(progress, 0), 100);
+        
+        if (this.progressElement) {
+            this.progressElement.style.width = clampedProgress + '%';
+        }
+    }
+    
     completeLoading() {
         // Animate to 100%
         this.animateToComplete().then(() => {
-            // Add fade-out class
             this.loader.classList.add('loaded');
             
-            // Remove from DOM after animation
             setTimeout(() => {
                 if (this.loader && this.loader.parentNode) {
                     this.loader.remove();
                 }
-                
-                // Enable scroll
                 document.body.style.overflow = '';
-                
-                // Trigger custom event
                 document.dispatchEvent(new CustomEvent('siteLoaded'));
-            }, 800);
+            }, 600);
         });
     }
     
     animateToComplete() {
         return new Promise(resolve => {
+            let currentProgress = 70;
             const targetProgress = 100;
-            const duration = 500;
+            const duration = 400;
             const fps = 60;
             const totalFrames = (duration / 1000) * fps;
-            const increment = (targetProgress - this.loadingProgress) / totalFrames;
+            const increment = (targetProgress - currentProgress) / totalFrames;
             
             let currentFrame = 0;
             
             const animation = setInterval(() => {
                 currentFrame++;
-                this.loadingProgress += increment;
+                currentProgress += increment;
                 
-                this.updateProgress(this.loadingProgress);
+                this.updateProgress(currentProgress);
                 
                 if (currentFrame >= totalFrames) {
                     clearInterval(animation);
@@ -128,25 +164,21 @@ class SiteLoader {
             }, 1000 / fps);
         });
     }
-    
-    updateProgress(progress) {
-        const clampedProgress = Math.min(Math.max(progress, 0), 100);
-        
-        if (this.progressFill) {
-            this.progressFill.style.width = clampedProgress + '%';
-        }
-        
-        if (this.percentage) {
-            this.percentage.textContent = Math.round(clampedProgress) + '%';
-        }
-    }
 }
 
 // Prevent scrolling while loading
 document.body.style.overflow = 'hidden';
 
-// Initialize loader
-const siteLoader = new SiteLoader();
+// Initialize loader only on specified pages
+const currentPath = window.location.pathname;
+const shouldShowLoader = currentPath.includes('index.html') || 
+                        currentPath.includes('gallery.html') || 
+                        currentPath === '/' || 
+                        currentPath === '/index.html';
 
-// Export for external access
-window.SiteLoader = siteLoader;
+if (shouldShowLoader) {
+    const siteLoader = new SiteLoader();
+    window.SiteLoader = siteLoader;
+} else {
+    document.body.style.overflow = '';
+}

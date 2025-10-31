@@ -141,6 +141,77 @@ if (!isMobile()) {
 // ROI CALCULATOR
 // ============================================
 
+// const roiCalculator = {
+//     // DOM elements
+//     propertyValue: document.getElementById('propertyValue'),
+//     rentalRate: document.getElementById('rentalRate'),
+//     holdingPeriod: document.getElementById('holdingPeriod'),
+//     appreciationRate: document.getElementById('appreciationRate'),
+    
+//     // Result elements
+//     rentalYield: document.getElementById('rentalYield'),
+//     totalRental: document.getElementById('totalRental'),
+//     futureValue: document.getElementById('futureValue'),
+//     totalROI: document.getElementById('totalROI'),
+    
+//     // Initialize calculator
+//     init() {
+//         if (!this.propertyValue) return; // Not on page with calculator
+        
+//         // Add event listeners
+//         this.propertyValue.addEventListener('input', () => this.calculate());
+//         this.rentalRate.addEventListener('input', () => this.calculate());
+//         this.holdingPeriod.addEventListener('input', () => this.calculate());
+//         this.appreciationRate.addEventListener('input', () => this.calculate());
+        
+//         // Initial calculation
+//         this.calculate();
+//     },
+    
+//     // Calculate all values
+//     calculate() {
+//         const propertyValue = parseFloat(this.propertyValue.value);
+//         const monthlyRental = parseFloat(this.rentalRate.value);
+//         const years = parseInt(this.holdingPeriod.value);
+//         const appreciationRate = parseFloat(this.appreciationRate.value) / 100;
+        
+//         // Calculate rental yield (annual rental income / property value * 100)
+//         const annualRental = monthlyRental * 12;
+//         const rentalYield = (annualRental / propertyValue) * 100;
+        
+//         // Calculate total rental income over period
+//         const totalRental = annualRental * years;
+        
+//         // Calculate future property value with compound appreciation
+//         const futureValue = propertyValue * Math.pow(1 + appreciationRate, years);
+        
+//         // Calculate total ROI
+//         // Total gain = (Future Value - Initial Value) + Total Rental Income
+//         const totalGain = (futureValue - propertyValue) + totalRental;
+//         const totalROI = (totalGain / propertyValue) * 100;
+        
+//         // Update display
+//         this.rentalYield.textContent = rentalYield.toFixed(1) + '%';
+//         this.totalRental.textContent = 'KSh ' + this.formatNumber(totalRental / 1000000, 1) + 'M';
+//         this.futureValue.textContent = 'KSh ' + this.formatNumber(futureValue / 1000000, 1) + 'M';
+//         this.totalROI.textContent = totalROI.toFixed(0) + '%';
+//     },
+    
+//     // Format numbers with commas and decimals
+//     formatNumber(num, decimals = 0) {
+//         return num.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+//     }
+// };
+
+// // Initialize calculator when DOM is ready
+// document.addEventListener('DOMContentLoaded', function() {
+//     roiCalculator.init();
+// });
+
+// ============================================
+// ROI CALCULATOR WITH DYNAMIC LABELS
+// ============================================
+
 const roiCalculator = {
     // DOM elements
     propertyValue: document.getElementById('propertyValue'),
@@ -161,21 +232,38 @@ const roiCalculator = {
         // Add event listeners
         this.propertyValue.addEventListener('input', () => this.calculate());
         this.rentalRate.addEventListener('input', () => this.calculate());
-        this.holdingPeriod.addEventListener('input', () => this.calculate());
+        this.holdingPeriod.addEventListener('input', () => this.updateLabelsAndCalculate());
         this.appreciationRate.addEventListener('input', () => this.calculate());
         
         // Initial calculation
+        this.updateLabelsAndCalculate();
+    },
+    
+    updateLabelsAndCalculate() {
+        const years = parseInt(this.holdingPeriod.value) || 5;
+        const yearText = years === 1 ? 'Year' : 'Years';
+        
+        // Find and update the labels
+        const resultCards = document.querySelectorAll('.result-card h4');
+        resultCards.forEach(label => {
+            if (label.textContent.includes('Total Rental Income')) {
+                label.textContent = `Total Rental Income (${years} ${yearText})`;
+            }
+            if (label.textContent.includes('Estimated Property Value')) {
+                label.textContent = `Estimated Property Value (${years} ${yearText})`;
+            }
+        });
+        
         this.calculate();
     },
     
-    // Calculate all values
     calculate() {
-        const propertyValue = parseFloat(this.propertyValue.value);
-        const monthlyRental = parseFloat(this.rentalRate.value);
-        const years = parseInt(this.holdingPeriod.value);
-        const appreciationRate = parseFloat(this.appreciationRate.value) / 100;
+        const propertyValue = parseFloat(this.propertyValue.value) || 10000000;
+        const monthlyRental = parseFloat(this.rentalRate.value) || 80000;
+        const years = parseInt(this.holdingPeriod.value) || 5;
+        const appreciationRate = parseFloat(this.appreciationRate.value) / 100 || 0.08;
         
-        // Calculate rental yield (annual rental income / property value * 100)
+        // Calculate rental yield
         const annualRental = monthlyRental * 12;
         const rentalYield = (annualRental / propertyValue) * 100;
         
@@ -186,18 +274,16 @@ const roiCalculator = {
         const futureValue = propertyValue * Math.pow(1 + appreciationRate, years);
         
         // Calculate total ROI
-        // Total gain = (Future Value - Initial Value) + Total Rental Income
         const totalGain = (futureValue - propertyValue) + totalRental;
         const totalROI = (totalGain / propertyValue) * 100;
         
         // Update display
-        this.rentalYield.textContent = rentalYield.toFixed(1) + '%';
-        this.totalRental.textContent = 'KSh ' + this.formatNumber(totalRental / 1000000, 1) + 'M';
-        this.futureValue.textContent = 'KSh ' + this.formatNumber(futureValue / 1000000, 1) + 'M';
-        this.totalROI.textContent = totalROI.toFixed(0) + '%';
+        if (this.rentalYield) this.rentalYield.textContent = rentalYield.toFixed(1) + '%';
+        if (this.totalRental) this.totalRental.textContent = 'KSh ' + this.formatNumber(totalRental / 1000000, 1) + 'M';
+        if (this.futureValue) this.futureValue.textContent = 'KSh ' + this.formatNumber(futureValue / 1000000, 1) + 'M';
+        if (this.totalROI) this.totalROI.textContent = totalROI.toFixed(0) + '%';
     },
     
-    // Format numbers with commas and decimals
     formatNumber(num, decimals = 0) {
         return num.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
@@ -207,6 +293,7 @@ const roiCalculator = {
 document.addEventListener('DOMContentLoaded', function() {
     roiCalculator.init();
 });
+
 
 // ============================================
 // SMOOTH SCROLL FOR ANCHOR LINKS

@@ -1,16 +1,35 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery | 6040 Vista Visual Tour</title>
+    <meta name="description" content="Explore 6040 Vista through stunning architectural renders and interior designs. View our premium development in detail.">
+
+    <!-- Fixed Favicon Implementation -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar scrolled" id="navbar">
         <div class="container nav-container">
-            <div class="logo"><a href="index.html">6040 Vista</a></div>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/6040V.png" 
+                        alt="6040 Vista Logo" 
+                        class="logo-img"
+                        loading="eager"
+                        onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTUwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjOEI0NTEzIiByeD0iOCIvPgo8dGV4dCB4PSI3NSIgeT0iMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iYm9sZCI+NjA0MDwvdGV4dD4KPC9zdmc+'">
+                </a>
+            </div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
@@ -25,55 +44,198 @@
         </div>
     </nav>
     
-    <section style="padding: 150px 0 80px; background: linear-gradient(135deg, var(--cream), var(--beige)); text-align: center;">
+    <!-- Hero Section -->
+    <section class="gallery-hero">
         <div class="container">
-            <span class="section-tag">Gallery</span>
+            <span class="section-tag">Visual Tour</span>
             <h1>Visualize Your Investment</h1>
-            <p style="max-width: 700px; margin: 1.5rem auto; font-size: 1.25rem;">Explore architectural renders and interior designs</p>
+            <p>Explore stunning architectural renders and premium interior designs that showcase the quality and elegance of 6040 Vista.</p>
         </div>
     </section>
 
-    <section style="padding: 80px 0; background: var(--white);">
+    <!-- Aerial Renders Section -->
+    <section class="gallery-section">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 3rem;">Architectural Renders</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <div style="background: var(--sand); height: 300px; border-radius: 12px;"></div>
-                <div style="background: var(--sand); height: 300px; border-radius: 12px;"></div>
-                <div style="background: var(--sand); height: 300px; border-radius: 12px;"></div>
-                <div style="background: var(--sand); height: 300px; border-radius: 12px;"></div>
+            <h2>Aerial & Architectural Renders</h2>
+            <div class="gallery-grid">
+                <figure class="gallery-item featured">
+                    <img src="images/High Obligue Aerial Render.webp" alt="High Oblique Aerial View of 6040 Vista" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>High Oblique Aerial View</h3>
+                        <p>Premium development from elevated perspective</p>
+                    </figcaption>
+                    <div class="featured-badge">Featured</div>
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="images/Vertical Aerial Render.webp" alt="Vertical Aerial View of 6040 Vista" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>Vertical Aerial View</h3>
+                        <p>Top-down development layout</p>
+                    </figcaption>
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="images/Low Oblique Aerial Render.webp" alt="Low Oblique Aerial View of 6040 Vista" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>Low Oblique Aerial View</h3>
+                        <p>Development context and surroundings</p>
+                    </figcaption>
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="images/Street Render.webp" alt="Street View Render of 6040 Vista" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>Street View Render</h3>
+                        <p>Modern architectural design from street perspective</p>
+                    </figcaption>
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="images/building-aerial.webp" alt="Building Aerial View of 6040 Vista" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>Building Aerial View</h3>
+                        <p>Complete development overview</p>
+                    </figcaption>
+                </figure>
             </div>
         </div>
     </section>
 
-    <section style="padding: 80px 0; background: var(--off-white);">
+    <!-- Interior Designs Section -->
+    <section class="gallery-section alt-bg">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 3rem;">Interior Designs</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <div style="background: var(--taupe); height: 300px; border-radius: 12px;"></div>
-                <div style="background: var(--taupe); height: 300px; border-radius: 12px;"></div>
-                <div style="background: var(--taupe); height: 300px; border-radius: 12px;"></div>
-                <div style="background: var(--taupe); height: 300px; border-radius: 12px;"></div>
+            <h2>Interior Designs</h2>
+            <div class="gallery-grid">
+                <figure class="gallery-item">
+                    <img src="images/Living Room Interior Render.webp" alt="Living Room Interior Design" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>Living Room Design</h3>
+                        <p>Spacious and modern living areas</p>
+                    </figcaption>
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="images/Kitchen Interior Render.webp" alt="Kitchen Interior Design" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>Modern Kitchen</h3>
+                        <p>Premium finishes and contemporary design</p>
+                    </figcaption>
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="images/Bedroom Interior Render.webp" alt="Bedroom Interior Design" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>Master Bedroom</h3>
+                        <p>Elegant and comfortable sleeping quarters</p>
+                    </figcaption>
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="images/Bathroom Interior Render.webp" alt="Bathroom Interior Design" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>Luxury Bathroom</h3>
+                        <p>Premium fixtures and sophisticated styling</p>
+                    </figcaption>
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="images/Vestibule Interior Render.webp" alt="Vestibule Interior Design" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>Entrance Vestibule</h3>
+                        <p>Grand entrance with premium finishes</p>
+                    </figcaption>
+                </figure>
             </div>
         </div>
     </section>
 
-    <section style="padding: 80px 0; background: var(--white); text-align: center;">
+    <!-- Unit Types Section -->
+    <section class="gallery-section">
         <div class="container">
-            <h2>Want to See More?</h2>
-            <p style="margin: 1.5rem 0;">Schedule a site visit or request our complete brochure with detailed images.</p>
-            <a href="contact.html" class="btn-primary">Schedule Viewing</a>
+            <h2>Unit Type Visuals</h2>
+            <div class="gallery-grid">
+                <figure class="gallery-item">
+                    <img src="images/3bed.webp" alt="3 Bedroom Unit Interior" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>3 Bedroom Unit</h3>
+                        <p>Spacious family living layout (135m²)</p>
+                    </figcaption>
+                </figure>
+                
+                <figure class="gallery-item">
+                    <img src="images/3bed-dsq.webp" alt="3 Bedroom + DSQ Unit Interior" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>3 Bedroom + DSQ</h3>
+                        <p>Premium unit with domestic staff quarters (149m²)</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Site & Brand Section -->
+    <section class="gallery-section alt-bg">
+        <div class="container">
+            <h2>Development Site</h2>
+            <div class="gallery-grid">
+                <figure class="gallery-item">
+                    <img src="images/Site Picture.webp" alt="6040 Vista Development Site" loading="eager">
+                    <figcaption class="gallery-caption">
+                        <h3>Prime Location Site</h3>
+                        <p>Gitere, Northern Bypass - Strategic investment location</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="gallery-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Experience 6040 Vista?</h2>
+                <p>Schedule a site visit to see the quality and attention to detail that makes this development Nairobi's premier investment opportunity.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn-primary">Schedule Site Visit</a>
+                    <a href="inquiry.html" class="btn-secondary">Investment Inquiry</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column"><h3>6040 Vista</h3><p>Gitere, Northern Bypass, Nairobi</p></div>
-                <div class="footer-column"><h4>Contact</h4><ul class="footer-contact"><li><a href="mailto:vista6040sales@gmail.com">vista6040sales@gmail.com</a></li><li><a href="tel:+254745118118">+254 745 118 118</a></li></ul></div>
+                <div class="footer-column">
+                    <h3>6040 Vista</h3>
+                    <p>Gitere, Northern Bypass, Nairobi<br>Premium investment opportunity</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="units.html">Unit Types</a></li>
+                        <li><a href="amenities.html">Amenities</a></li>
+                        <li><a href="location.html">Location</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul class="footer-contact">
+                        <li><a href="mailto:vista6040sales@gmail.com">vista6040sales@gmail.com</a></li>
+                        <li><a href="tel:+254745118118">+254 745 118 118</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-bottom"><p>&copy; 2025 6040 Vista. All rights reserved.</p></div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 6040 Vista. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Scripts - Loader enabled for image-heavy pages -->
+    <script src="js/loader.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
