@@ -6,6 +6,9 @@
     <meta name="description" content="6040 Vista - Prime investment opportunity in Gitere, Northern Bypass, Nairobi. Modern 2 & 3 bedroom apartments with exceptional ROI potential.">
     <meta name="keywords" content="Nairobi apartments, Northern Bypass real estate, Gitere property investment, 6040 Vista, Kenya real estate investment">
     <title>6040 Vista - Prime Real Estate Investment | Northern Bypass, Nairobi</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,22 +41,22 @@
 
     <!-- Hero Section with Parallax -->
     <section class="hero parallax-section" id="heroSection">
-        <div class="parallax-bg" id="parallaxBg"></div>
+        <div class="parallax-bg" id="parallaxBg" style="background-image: url('images/High Oblique Aerial Render.webp');"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title fade-in">Invest in Nairobi's Premium Address</h1>
             <p class="hero-subtitle fade-in-delay">Modern Living Meets Strategic Investment Opportunity at 6040 Vista, Gitere</p>
             <div class="hero-stats fade-in-delay-2">
                 <div class="stat-item">
-                    <h3>100M</h3>
+                    <h3><span data-animate-number="100" data-suffix="M" data-duration="1000">100M</span></h3>
                     <p>To Northern Bypass</p>
                 </div>
                 <div class="stat-item">
-                    <h3>15 Min</h3>
+                    <h3><span data-animate-number="15" data-suffix=" Min" data-duration="1000">15 Min</span></h3>
                     <p>To Westlands & GCM</p>
                 </div>
                 <div class="stat-item">
-                    <h3>2 Min</h3>
+                    <h3><span data-animate-number="2" data-suffix=" Min" data-duration="1000">2 Min</span></h3>
                     <p>To Windsor Golf Club</p>
                 </div>
             </div>
@@ -116,7 +119,7 @@
         </div>
     </section>
 
-    <!-- Featured Units -->
+    <!-- Featured Units
     <section class="featured-units parallax-section" id="featuredUnits">
         <div class="parallax-bg-light"></div>
         <div class="container">
@@ -176,6 +179,116 @@
                 <a href="units.html" class="btn-primary">Compare All Units</a>
             </div>
         </div>
+    </section> -->
+
+    <!-- Featured Units - 3D Flip Carousel -->
+    <section class="featured-units parallax-section" id="featuredUnits">
+        <div class="parallax-bg-light"></div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Unit Types</span>
+                <h2>Investment Options Tailored to Your Goals</h2>
+                <p>Choose from our carefully designed 2 & 3 bedroom units, each optimized for modern living and maximum investment returns</p>
+            </div>
+            
+            <!-- Carousel Container -->
+            <div class="carousel-container" id="unitsCarousel">
+                <div class="carousel-wrapper">
+                    <div class="carousel-track">
+                        
+                        <!-- Slide 1: 2 Bedroom A -->
+                        <div class="carousel-slide">
+                            <div class="carousel-slide-image">
+                                <img src="images/Living Room Interior Render.webp" alt="2 Bedroom Unit A" loading="lazy">
+                            </div>
+                            <div class="carousel-slide-content">
+                                <h3 class="carousel-slide-title">2 Bedroom A</h3>
+                                <div class="carousel-slide-size">101 m²</div>
+                                <ul class="carousel-slide-features">
+                                    <li>Master bedroom with en-suite</li>
+                                    <li>Modern open-plan kitchen</li>
+                                    <li>Bright living & dining area</li>
+                                    <li>Family bathroom</li>
+                                    <li>Private balcony</li>
+                                </ul>
+                                <p style="margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 0.95rem;">Perfect entry-level investment with strong rental demand from young professionals.</p>
+                                <a href="units.html#unit-2br-a" class="btn-primary" style="width: 100%;">View Details →</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2: 2 Bedroom B -->
+                        <div class="carousel-slide">
+                            <div class="carousel-slide-image">
+                                <img src="images/Kitchen Interior Render.webp" alt="2 Bedroom Unit B" loading="lazy">
+                            </div>
+                            <div class="carousel-slide-content">
+                                <h3 class="carousel-slide-title">2 Bedroom B</h3>
+                                <div class="carousel-slide-size">101 m²</div>
+                                <ul class="carousel-slide-features">
+                                    <li>Alternative floor plan layout</li>
+                                    <li>Two generous bedrooms</li>
+                                    <li>Contemporary kitchen design</li>
+                                    <li>Living & dining space</li>
+                                    <li>Modern bathroom</li>
+                                </ul>
+                                <p style="margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 0.95rem;">Unique layout appeals to diverse tenants, offering variety in your portfolio.</p>
+                                <a href="units.html#unit-2br-b" class="btn-primary" style="width: 100%;">View Details →</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3: 3 Bedroom -->
+                        <div class="carousel-slide">
+                            <div class="carousel-slide-image">
+                                <img src="images/Bedroom Interior Render.webp" alt="3 Bedroom Unit" loading="lazy">
+                            </div>
+                            <div class="carousel-slide-content">
+                                <h3 class="carousel-slide-title">3 Bedroom</h3>
+                                <div class="carousel-slide-size">135 m²</div>
+                                <ul class="carousel-slide-features">
+                                    <li>Master bedroom with en-suite</li>
+                                    <li>Two additional bedrooms</li>
+                                    <li>Premium kitchen with storage</li>
+                                    <li>Generous living & dining</li>
+                                    <li>Large balcony</li>
+                                </ul>
+                                <p style="margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 0.95rem;">High demand from growing families. Premium rental rates and long-term value.</p>
+                                <a href="units.html#unit-3br" class="btn-primary" style="width: 100%;">View Details →</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 4: 3 Bedroom + DSQ (Featured) -->
+                        <div class="carousel-slide" style="border: 3px solid var(--gold);">
+                            <div style="position: absolute; top: 1rem; right: 1rem; background: var(--gold); color: var(--white); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 700; z-index: 10; font-size: 0.875rem;">Most Popular</div>
+                            <div class="carousel-slide-image">
+                                <img src="images/Bathroom Interior Render.webp" alt="3 Bedroom + DSQ" loading="lazy">
+                            </div>
+                            <div class="carousel-slide-content">
+                                <h3 class="carousel-slide-title">3 Bedroom + DSQ</h3>
+                                <div class="carousel-slide-size">149 m²</div>
+                                <ul class="carousel-slide-features">
+                                    <li>Spacious master with luxury en-suite</li>
+                                    <li>Two additional large bedrooms</li>
+                                    <li>Domestic Staff Quarters (DSQ)</li>
+                                    <li>Designer kitchen</li>
+                                    <li>Oversized balcony</li>
+                                </ul>
+                                <p style="margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 0.95rem;"><strong>Top-tier rental income.</strong> DSQ attracts affluent tenants. Best ROI in development.</p>
+                                <a href="units.html#unit-3br-dsq" class="btn-primary" style="width: 100%; background: var(--bronze);">View Details →</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <!-- Carousel Controls -->
+                <div class="carousel-controls">
+                    <button class="carousel-arrow carousel-prev" aria-label="Previous slide">‹</button>
+                    <div class="carousel-dots"></div>
+                    <button class="carousel-arrow carousel-next" aria-label="Next slide">›</button>
+                </div>
+            </div>
+            
+        </div>
     </section>
 
     <!-- ROI Calculator Section -->
@@ -234,7 +347,7 @@
 
     <!-- Amenities Preview -->
     <section class="amenities-preview parallax-section">
-        <div class="parallax-bg-dark"></div>
+        <div class="parallax-bg-dark" style="background-image: url('images/Vestibule Interior Render.webp'); opacity: 0.3;"></div>
         <div class="container">
             <div class="section-header light">
                 <span class="section-tag light">Premium Living</span>
@@ -447,6 +560,11 @@
         </div>
     </footer>
 
+    <!-- <script src="js/main.js"></script> -->
+    <script src="js/loader.js"></script>
+    <script src="js/number-animations.js"></script>
+    <script src="js/carousel.js"></script>
     <script src="js/main.js"></script>
+
 </body>
 </html>
