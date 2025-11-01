@@ -118,15 +118,40 @@ class InteractiveMap {
         this.init();
     }
     
-    init() {
-        this.createMapSVG();
-        this.createLandmarks();
-        if (this.options.showLegend && !this.options.isPreview) {
-            this.createLegend();
-        }
-        this.setupEventListeners();
-    }
+    // init() {
+    //     this.createMapSVG();
+    //     this.createLandmarks();
+    //     if (this.options.showLegend && !this.options.isPreview) {
+    //         this.createLegend();
+    //     }
+    //     this.setupEventListeners();
+    // }
     
+    init() {
+    this.calculateAllDistances(); // Add this line
+    this.createMapSVG();
+    this.createLandmarks();
+    if (this.options.showLegend && !this.options.isPreview) {
+        this.createLegend();
+    }
+    this.setupEventListeners();
+    }
+
+    calculateAllDistances() {
+    const vistaLandmark = this.landmarks.find(l => l.id === '6040-vista');
+    
+    this.landmarks.forEach(landmark => {
+        if (landmark.id !== '6040-vista') {
+            const distanceMeters = this.calculateDistance(
+                vistaLandmark.lat, vistaLandmark.lng,
+                landmark.lat, landmark.lng
+            );
+            landmark.calculatedDistance = this.formatDistance(distanceMeters);
+        }
+    });
+    }
+
+
     // Haversine distance calculation in meters
     calculateDistance(lat1, lng1, lat2, lng2) {
         const R = 6371000; // Earth's radius in meters
@@ -360,23 +385,45 @@ class InteractiveMap {
         });
     }
     
+    // showTooltip(event, landmark) {
+    //     this.hideTooltip();
+        
+    //     this.tooltip = document.createElement('div');
+    //     this.tooltip.className = 'map-tooltip';
+        
+    //     const distance = landmark.calculatedDistance || landmark.distance;
+        
+    //     this.tooltip.innerHTML = `
+    //         <h4>${landmark.icon} ${landmark.name}</h4>
+    //         <p><strong>Distance:</strong> ${distance}</p>
+    //         <p><strong>Travel Time:</strong> ${landmark.time}</p>
+    //         ${!this.options.isPreview ? `<p>${landmark.description}</p>` : ''}
+    //     `;
+        
+    //     document.body.appendChild(this.tooltip);
+    //     this.updateTooltipPosition(event);
+    // }
+
     showTooltip(event, landmark) {
-        this.hideTooltip();
-        
-        this.tooltip = document.createElement('div');
-        this.tooltip.className = 'map-tooltip';
-        
-        const distance = landmark.calculatedDistance || landmark.distance;
-        
-        this.tooltip.innerHTML = `
-            <h4>${landmark.icon} ${landmark.name}</h4>
-            <p><strong>Distance:</strong> ${distance}</p>
-            <p><strong>Travel Time:</strong> ${landmark.time}</p>
-            ${!this.options.isPreview ? `<p>${landmark.description}</p>` : ''}
-        `;
-        
-        document.body.appendChild(this.tooltip);
-        this.updateTooltipPosition(event);
+    this.hideTooltip();
+    
+    this.tooltip = document.createElement('div');
+    this.tooltip.className = 'map-tooltip';
+    
+    // Use calculated distance with clear labeling
+    const distance = landmark.calculatedDistance || landmark.distance;
+    const distanceLabel = landmark.id === '6040-vista' ? 'You are here' : `${distance} from 6040 Vista`;
+    
+    this.tooltip.innerHTML = `
+        <h4>${landmark.icon} ${landmark.name}</h4>
+        <p><strong>Distance:</strong> ${distanceLabel}</p>
+        <p><strong>Travel Time:</strong> ${landmark.time}</p>
+        ${!this.options.isPreview ? `<p>${landmark.description}</p>` : ''}
+        ${!this.options.isPreview ? `<p style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--sand);">Click for directions</p>` : ''}
+    `;
+    
+    document.body.appendChild(this.tooltip);
+    this.updateTooltipPosition(event);
     }
     
     updateTooltipPosition(event) {
@@ -458,22 +505,46 @@ class InteractiveMap {
         return `https://www.google.com/maps/dir/${encodeURIComponent(origin)}/${encodeURIComponent(destination)}`;
     }
     
+    // createLegend() {
+    //     const legend = document.createElement('div');
+    //     legend.className = 'map-legend';
+    //     legend.innerHTML = `
+    //         <h4>Key Locations</h4>
+    //         <div class="legend-items">
+    //             ${this.landmarks.slice(0, 5).map(l => `
+    //                 <div class="legend-item">
+    //                     <span class="legend-icon">${l.icon}</span>
+    //                     <span>${l.name}</span>
+    //                 </div>
+    //             `).join('')}
+    //         </div>
+    //     `;
+    //     this.container.appendChild(legend);
+    // }
+
     createLegend() {
-        const legend = document.createElement('div');
-        legend.className = 'map-legend';
-        legend.innerHTML = `
-            <h4>Key Locations</h4>
-            <div class="legend-items">
-                ${this.landmarks.slice(0, 5).map(l => `
-                    <div class="legend-item">
-                        <span class="legend-icon">${l.icon}</span>
-                        <span>${l.name}</span>
-                    </div>
-                `).join('')}
-            </div>
-        `;
+    const legend = document.createElement('div');
+    legend.className = 'map-legend';
+    legend.innerHTML = `
+        <h4>Key Locations</h4>
+        <div class="legend-items">
+            ${this.landmarks.slice(0, 6).map(l => `
+                <div class="legend-item">
+                    <span class="legend-icon">${l.icon}</span>
+                    <span>${l.name}</span>
+                </div>
+            `).join('')}
+        </div>
+    `;
+    
+    // Append to map container (not outer container) for proper positioning
+    const mapContainer = this.container.querySelector('.map-container');
+    if (mapContainer) {
+        mapContainer.appendChild(legend);
+    } else {
         this.container.appendChild(legend);
     }
+    }   
     
     setupEventListeners() {
         // Handle resize
