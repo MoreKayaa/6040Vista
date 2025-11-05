@@ -1351,7 +1351,7 @@ img {
 /* ============================================
    3D FLIP CAROUSEL STYLES
    ============================================ */
-.carousel-container {
+/* .carousel-container {
     position: relative;
     max-width: 1400px;
     margin: 0 auto;
@@ -1500,7 +1500,7 @@ img {
 
 .carousel-dot:hover {
     background: var(--bronze);
-}
+} */
 
 /* Number Animation Styles */
 [data-animate-number] {
@@ -1518,7 +1518,7 @@ img {
 }
 
 /* Mobile Carousel (Vertical Stack) */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .carousel-slide {
         flex: 0 0 100%;
         margin: 0 0 2rem 0;
@@ -1544,12 +1544,12 @@ img {
 }
 
 /* Disable horizontal scroll */
-body {
+/* body {
     overflow-x: hidden;
-}
+} */
 
 /* Custom cursor on desktop */
-@media (min-width: 769px) {
+/* @media (min-width: 769px) {
     .carousel-track {
         cursor: grab;
     }
@@ -1557,14 +1557,14 @@ body {
     .carousel-track:active {
         cursor: grabbing;
     }
-}
+} */
 
 /* Hide cursor on mobile */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .carousel-track {
         cursor: default;
     }
-}
+} */ */
 
 /* ============================================
    NAVBAR LOGO OPTIMIZATION
@@ -1715,7 +1715,7 @@ body {
 /* ============================================
    MOBILE CAROUSEL FIXES
    ============================================ */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .carousel-container {
         padding: 0 1rem;
         perspective: none;
@@ -1757,15 +1757,15 @@ body {
         height: 45px;
         font-size: 1.25rem;
     }
-}
+} */
 
 /* Ensure images are properly sized */
-.carousel-slide-image img {
+/* .carousel-slide-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-}
+} */
 /* ============================================
    GALLERY STYLES - PROFESSIONAL LAYOUT
    ============================================ */
@@ -2245,5 +2245,751 @@ img[loading="lazy"] {
     
     img[data-mobile-hide] {
         display: none;
+    }
+}
+/* Hero Background Image Styles */
+.hero-with-bg {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-with-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.25; /* Translucent effect */
+    z-index: 0;
+}
+
+.hero-with-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.7), rgba(201, 168, 105, 0.5));
+    z-index: 1;
+}
+
+.hero-with-bg .container {
+    position: relative;
+    z-index: 2;
+}
+/* WhatsApp Integration Styles */
+.btn-whatsapp,
+.btn-whatsapp-form {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #25D366;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-whatsapp:hover,
+.btn-whatsapp-form:hover {
+    background: #1ebe57;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp svg,
+.btn-whatsapp-form svg {
+    margin-right: 0.5rem;
+}
+
+.btn-whatsapp-form {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* WhatsApp Floating Button (Optional) */
+.whatsapp-float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-float svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
+}
+
+/* ============================================
+   CAROUSEL - FIXED VERSION
+   ============================================ */
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    overflow: hidden;
+}
+
+.carousel-wrapper {
+    perspective: 2000px;
+    overflow: visible;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.carousel-slide {
+    flex: 0 0 calc(33.333% - 1.5rem); /* 3 cards on desktop */
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.carousel-slide:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+.carousel-slide-image {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-slide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.carousel-slide:hover .carousel-slide-image img {
+    transform: scale(1.05);
+}
+
+.carousel-slide-content {
+    padding: 2rem;
+}
+
+.carousel-slide-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    color: var(--bronze);
+    margin-bottom: 0.5rem;
+}
+
+.carousel-slide-size {
+    font-size: 1.125rem;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.carousel-slide-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.carousel-slide-features li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.carousel-slide-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: bold;
+}
+
+/* Carousel Controls */
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.carousel-arrow {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bronze);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.carousel-arrow:hover {
+    background: var(--gold);
+    transform: scale(1.1);
+}
+
+.carousel-arrow::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-top: 3px solid white;
+    border-right: 3px solid white;
+    top: 50%;
+    left: 50%;
+}
+
+.carousel-prev::after {
+    transform: translate(-30%, -50%) rotate(-135deg);
+}
+
+.carousel-next::after {
+    transform: translate(-70%, -50%) rotate(45deg);
+}
+
+.carousel-dots {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--sand);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.carousel-dot.active {
+    background: var(--bronze);
+    transform: scale(1.3);
+}
+
+/* MOBILE RESPONSIVENESS - FIXED */
+@media (max-width: 1024px) {
+    .carousel-slide {
+        flex: 0 0 calc(50% - 1rem); /* 2 cards on tablet */
+    }
+    
+    .carousel-slide-image {
+        height: 240px;
+    }
+    
+    .carousel-slide-content {
+        padding: 1.5rem;
+    }
+    
+    .carousel-slide-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-container {
+        padding: 1rem 0;
+    }
+    
+    .carousel-track {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1rem 0;
+    }
+    
+    .carousel-slide {
+        flex: 0 0 100%; /* 1 card stacked vertically on mobile */
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .carousel-slide-image {
+        height: 220px;
+    }
+    
+    .carousel-controls {
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .carousel-arrow {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .carousel-dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    /* Hide grab cursor on mobile */
+    .carousel-track {
+        cursor: default !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-slide-content {
+        padding: 1.25rem;
+    }
+    
+    .carousel-slide-title {
+        font-size: 1.35rem;
+    }
+    
+    .carousel-slide-size {
+        font-size: 1rem;
+    }
+    
+    .carousel-slide-features li {
+        font-size: 0.875rem;
+    }
+}
+
+/* ============================================
+   INTERACTIVE MAP - ENHANCED VISUALS
+   ============================================ */
+
+#locationInteractiveMap,
+#homeMapPreview {
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: linear-gradient(135deg, #f8f6f3 0%, #e8dcc4 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border: 3px solid var(--gold);
+}
+
+.map-svg-container {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.map-svg-container svg {
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.07));
+}
+
+/* Map Landmarks - Enhanced */
+.map-landmark {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.map-landmark circle {
+    transition: all 0.3s ease;
+}
+
+.map-landmark:hover circle {
+    r: 14;
+    fill: var(--bronze);
+    stroke-width: 4;
+    filter: drop-shadow(0 0 8px rgba(201, 168, 105, 0.6));
+}
+
+.map-landmark text {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+/* Map Tooltip - Enhanced */
+.map-tooltip {
+    position: absolute;
+    background: linear-gradient(135deg, var(--bronze), var(--gold));
+    color: white;
+    padding: 0.875rem 1.25rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.map-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid var(--gold);
+}
+
+.map-tooltip.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Map Legend - Enhanced */
+.map-legend {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 2px solid var(--beige);
+}
+
+.map-legend h4 {
+    color: var(--bronze);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+}
+
+.legend-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.legend-item:hover {
+    background: var(--cream);
+    transform: translateX(4px);
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.legend-label {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Map Modal - Enhanced */
+.landmark-info-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 1rem;
+}
+
+.landmark-info-modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 100%;
+    padding: 2.5rem;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--bronze);
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background: var(--bronze);
+    color: white;
+    transform: rotate(90deg);
+}
+
+.modal-content h3 {
+    color: var(--bronze);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.modal-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.modal-directions-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bronze);
+    color: white;
+    padding: 0.875rem 1.75rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.modal-directions-btn:hover {
+    background: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(201, 168, 105, 0.3);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    #locationInteractiveMap,
+    #homeMapPreview {
+        padding: 1.25rem;
+    }
+    
+    .map-legend {
+        padding: 1.25rem;
+    }
+    
+    .legend-items {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        padding: 2rem;
+        margin: 1rem;
+    }
+}
+
+/* ============================================
+   AMENITIES - INTERACTIVE CARDS
+   ============================================ */
+
+.amenities-interactive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.amenity-card-interactive {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+}
+
+.amenity-card-interactive:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(201, 168, 105, 0.25);
+    border-color: var(--gold);
+}
+
+.amenity-icon-wrapper {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--cream), var(--beige));
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.4s ease;
+}
+
+.amenity-card-interactive:hover .amenity-icon-wrapper {
+    background: linear-gradient(135deg, var(--gold), var(--bronze));
+    transform: scale(1.1) rotate(5deg);
+}
+
+.amenity-icon-svg {
+    width: 36px;
+    height: 36px;
+    color: var(--bronze);
+    transition: all 0.4s ease;
+}
+
+.amenity-card-interactive:hover .amenity-icon-svg {
+    color: white;
+    transform: scale(1.1);
+}
+
+.amenity-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--bronze);
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
+}
+
+.amenity-card-interactive:hover .amenity-content h3 {
+    color: var(--gold);
+}
+
+.amenity-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+}
+
+.amenity-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.stat-badge {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    background: var(--cream);
+    color: var(--bronze);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.amenity-card-interactive:hover .stat-badge {
+    background: var(--gold);
+    color: white;
+}
+
+.amenity-hover-effect {
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(201, 168, 105, 0.1) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+.amenity-card-interactive:hover .amenity-hover-effect {
+    transform: scale(1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .amenities-interactive-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .amenity-card-interactive {
+        padding: 1.5rem;
+    }
+    
+    .amenity-icon-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .amenity-icon-svg {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .amenity-content h3 {
+        font-size: 1.25rem;
     }
 }
