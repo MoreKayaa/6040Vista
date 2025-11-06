@@ -1,0 +1,407 @@
+/* ============================================
+   NETFLIX-STYLE CAROUSEL FOR UNIT TYPES
+   ============================================
+   - Full-focus single unit display
+   - Smooth horizontal slide animation
+   - Auto-play with manual controls
+   - Fully responsive
+   ============================================ */
+
+.units-carousel-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #F5F1E8 0%, #E8DCC4 100%);
+    overflow: hidden;
+}
+
+.carousel-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.carousel-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.carousel-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #2C2420;
+    margin-bottom: 15px;
+}
+
+.carousel-header p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2rem;
+    color: #6B5D52;
+}
+
+/* Carousel Wrapper */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Carousel Track */
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+/* Individual Slide */
+.carousel-slide {
+    min-width: 100%;
+    display: flex;
+    align-items: stretch;
+    background: #FFFFFF;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+/* Slide Layout: Image + Content */
+.slide-image {
+    flex: 0 0 55%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 600px;
+    position: relative;
+}
+
+.slide-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+}
+
+.slide-content {
+    flex: 0 0 45%;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #FFFFFF;
+}
+
+/* Unit Badge */
+.unit-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #C9A869, #A37F4E);
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    align-self: flex-start;
+}
+
+/* Unit Title */
+.unit-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #2C2420;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+/* Unit Specs */
+.unit-specs {
+    display: flex;
+    gap: 30px;
+    margin: 25px 0;
+    padding: 20px 0;
+    border-top: 2px solid #E8DCC4;
+    border-bottom: 2px solid #E8DCC4;
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.spec-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.85rem;
+    color: #8B7D72;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.spec-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #2C2420;
+    font-weight: 600;
+}
+
+/* Unit Description */
+.unit-description {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #4A4A4A;
+    margin-bottom: 30px;
+}
+
+/* Features List */
+.unit-features {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0;
+}
+
+.unit-features li {
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    color: #4A4A4A;
+    padding: 10px 0;
+    padding-left: 30px;
+    position: relative;
+}
+
+.unit-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #C9A869;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* CTA Button */
+.carousel-cta {
+    display: inline-block;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #C9A869, #A37F4E);
+    color: #FFFFFF;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    margin-top: 20px;
+}
+
+.carousel-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(201, 168, 105, 0.4);
+}
+
+/* Navigation Arrows */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: none;
+}
+
+.carousel-arrow {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-arrow:hover {
+    background: #FFFFFF;
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
+}
+
+.carousel-arrow svg {
+    width: 24px;
+    height: 24px;
+    fill: #2C2420;
+}
+
+.carousel-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+}
+
+.indicator-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(44, 36, 32, 0.2);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.indicator-dot.active {
+    background: #C9A869;
+    width: 40px;
+    border-radius: 6px;
+}
+
+.indicator-dot:hover {
+    background: rgba(201, 168, 105, 0.6);
+}
+
+/* Progress Bar (Auto-play indicator) */
+.carousel-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #C9A869, #A37F4E);
+    width: 0%;
+    transition: width 5s linear;
+}
+
+.progress-bar.active {
+    width: 100%;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .slide-content {
+        padding: 40px;
+    }
+    
+    .unit-title {
+        font-size: 2rem;
+    }
+    
+    .carousel-header h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 968px) {
+    .carousel-slide {
+        flex-direction: column;
+    }
+    
+    .slide-image {
+        flex: 0 0 auto;
+        min-height: 400px;
+        width: 100%;
+    }
+    
+    .slide-content {
+        flex: 0 0 auto;
+        width: 100%;
+        padding: 40px 30px;
+    }
+    
+    .unit-specs {
+        gap: 20px;
+    }
+    
+    .carousel-arrow {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 640px) {
+    .units-carousel-section {
+        padding: 60px 0;
+    }
+    
+    .carousel-header h2 {
+        font-size: 2rem;
+    }
+    
+    .carousel-header p {
+        font-size: 1rem;
+    }
+    
+    .slide-image {
+        min-height: 300px;
+    }
+    
+    .slide-content {
+        padding: 30px 20px;
+    }
+    
+    .unit-title {
+        font-size: 1.75rem;
+    }
+    
+    .unit-specs {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .spec-value {
+        font-size: 1.25rem;
+    }
+    
+    .unit-description {
+        font-size: 1rem;
+    }
+    
+    .carousel-arrow {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .carousel-nav {
+        padding: 0 10px;
+    }
+    
+    .carousel-cta {
+        width: 100%;
+        text-align: center;
+    }
+}

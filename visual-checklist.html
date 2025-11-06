@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6040 Vista - Implementation Checklist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2C2420;
+            background: linear-gradient(135deg, #F5F1E8 0%, #E8DCC4 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #C9A869;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #2C2420;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #6B5D52;
+        }
+        
+        .paths {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .path-card {
+            background: linear-gradient(135deg, #F5F1E8 0%, #E8DCC4 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .path-card:hover {
+            border-color: #C9A869;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(201, 168, 105, 0.3);
+        }
+        
+        .path-card h2 {
+            color: #C9A869;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .path-card .time {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #A37F4E;
+            margin-bottom: 15px;
+        }
+        
+        .path-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .path-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .path-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #25D366;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .checklist-section {
+            margin-bottom: 40px;
+        }
+        
+        .checklist-section h2 {
+            color: #2C2420;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #E8DCC4;
+        }
+        
+        .checklist {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .checklist-item {
+            background: #FAFAFA;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border-left: 4px solid #C9A869;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .checklist-item:hover {
+            background: #F5F1E8;
+            transform: translateX(5px);
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: #C9A869;
+        }
+        
+        .checklist-item label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .priority {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .priority.critical {
+            background: #FF6B6B;
+            color: white;
+        }
+        
+        .priority.important {
+            background: #FFA500;
+            color: white;
+        }
+        
+        .priority.optional {
+            background: #4ECDC4;
+            color: white;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 40px;
+            background: #E8DCC4;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #C9A869, #A37F4E);
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .file-card {
+            background: white;
+            border: 2px solid #E8DCC4;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .file-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .file-name {
+            font-weight: 600;
+            color: #2C2420;
+            margin-bottom: 5px;
+        }
+        
+        .file-size {
+            font-size: 0.85rem;
+            color: #6B5D52;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #C9A869, #A37F4E);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin: 20px 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(201, 168, 105, 0.4);
+        }
+        
+        .tips {
+            background: #FFF9E6;
+            border-left: 4px solid #FFA500;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .tips h3 {
+            color: #FFA500;
+            margin-bottom: 15px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            .path-card:hover,
+            .checklist-item:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 6040 Vista Implementation Checklist</h1>
+            <p class="subtitle">Track your progress and ensure nothing is missed</p>
+        </header>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar">0% Complete</div>
+        </div>
+        
+        <section class="paths">
+            <div class="path-card">
+                <h2>Path 1: Critical</h2>
+                <div class="time">30 min</div>
+                <ul>
+                    <li>Logo sizing fix</li>
+                    <li>Button overlap fix</li>
+                    <li>Hero visibility fix</li>
+                    <li>Trusted Partners</li>
+                </ul>
+            </div>
+            
+            <div class="path-card">
+                <h2>Path 2: Essential</h2>
+                <div class="time">90 min</div>
+                <ul>
+                    <li>Path 1 features</li>
+                    <li>Netflix carousel</li>
+                    <li>Lightbox gallery</li>
+                </ul>
+            </div>
+            
+            <div class="path-card">
+                <h2>Path 3: Complete</h2>
+                <div class="time">180 min</div>
+                <ul>
+                    <li>Path 2 features</li>
+                    <li>Sketch map</li>
+                    <li>All hero backgrounds</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="checklist-section">
+            <h2>📋 Pre-Implementation</h2>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="pre1">
+                    <label for="pre1">Downloaded and extracted package</label>
+                    <span class="priority critical">Critical</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="pre2">
+                    <label for="pre2">Created backup of current website</label>
+                    <span class="priority critical">Critical</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="pre3">
+                    <label for="pre3">Have FTP/file manager access</label>
+                    <span class="priority critical">Critical</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="pre4">
+                    <label for="pre4">Have text editor ready (VS Code, Sublime, etc.)</label>
+                    <span class="priority important">Important</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="pre5">
+                    <label for="pre5">Have browser open for testing</label>
+                    <span class="priority important">Important</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="checklist-section">
+            <h2>🔧 Critical Fixes (Path 1)</h2>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="fix1">
+                    <label for="fix1">Fix logo sizing (add .nav-logo class)</label>
+                    <span class="priority critical">5 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="fix2">
+                    <label for="fix2">Fix button overlap (adjust bottom positions)</label>
+                    <span class="priority critical">5 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="fix3">
+                    <label for="fix3">Fix hero visibility (add overlay and text-shadow)</label>
+                    <span class="priority critical">10 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="fix4">
+                    <label for="fix4">Upload partner logos (nbk.svg, nmn-law-logo.webp)</label>
+                    <span class="priority critical">2 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="fix5">
+                    <label for="fix5">Add Trusted Partners section to index.html</label>
+                    <span class="priority critical">8 min</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="checklist-section">
+            <h2>⭐ Essential Features (Path 2)</h2>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="feat1">
+                    <label for="feat1">Upload carousel CSS and JS files</label>
+                    <span class="priority important">5 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="feat2">
+                    <label for="feat2">Add carousel CSS link to index.html head</label>
+                    <span class="priority important">2 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="feat3">
+                    <label for="feat3">Replace old carousel with new section</label>
+                    <span class="priority important">10 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="feat4">
+                    <label for="feat4">Add carousel JS before closing body tag</label>
+                    <span class="priority important">2 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="feat5">
+                    <label for="feat5">Test carousel auto-play and controls</label>
+                    <span class="priority important">5 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="feat6">
+                    <label for="feat6">Upload lightbox CSS and JS files</label>
+                    <span class="priority important">5 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="feat7">
+                    <label for="feat7">Add lightbox CSS link to units.html</label>
+                    <span class="priority important">2 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="feat8">
+                    <label for="feat8">Add .floor-plan-gallery class to floor plan images</label>
+                    <span class="priority important">8 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="feat9">
+                    <label for="feat9">Add lightbox JS before closing body tag</label>
+                    <span class="priority important">2 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="feat10">
+                    <label for="feat10">Test lightbox click and zoom functionality</label>
+                    <span class="priority important">5 min</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="checklist-section">
+            <h2>🚀 Complete Package (Path 3)</h2>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="comp1">
+                    <label for="comp1">Upload sketch map CSS and JS files</label>
+                    <span class="priority optional">5 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="comp2">
+                    <label for="comp2">Replace old map with sketch map section</label>
+                    <span class="priority optional">15 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="comp3">
+                    <label for="comp3">Add sketch map CSS and JS links</label>
+                    <span class="priority optional">5 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="comp4">
+                    <label for="comp4">Test map interactivity and animations</label>
+                    <span class="priority optional">10 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="comp5">
+                    <label for="comp5">Add hero background to location.html</label>
+                    <span class="priority optional">5 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="comp6">
+                    <label for="comp6">Add hero background to contact.html</label>
+                    <span class="priority optional">5 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="comp7">
+                    <label for="comp7">Add hero background to amenities.html</label>
+                    <span class="priority optional">5 min</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="comp8">
+                    <label for="comp8">Add hero background to units.html</label>
+                    <span class="priority optional">5 min</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="checklist-section">
+            <h2>✅ Final Testing</h2>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="test1">
+                    <label for="test1">Test on Chrome desktop</label>
+                    <span class="priority critical">Required</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="test2">
+                    <label for="test2">Test on mobile (responsive mode or real device)</label>
+                    <span class="priority critical">Required</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="test3">
+                    <label for="test3">Check all images load correctly</label>
+                    <span class="priority critical">Required</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="test4">
+                    <label for="test4">Test WhatsApp button functionality</label>
+                    <span class="priority important">Required</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="test5">
+                    <label for="test5">Verify no console errors (F12 → Console)</label>
+                    <span class="priority important">Recommended</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="test6">
+                    <label for="test6">Test on Firefox</label>
+                    <span class="priority optional">Optional</span>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="test7">
+                    <label for="test7">Test on Safari</label>
+                    <span class="priority optional">Optional</span>
+                </div>
+            </div>
+        </section>
+        
+        <div class="tips">
+            <h3>💡 Pro Tips</h3>
+            <ul>
+                <li>Work incrementally - implement one feature, test, then move to next</li>
+                <li>Keep browser console open (F12) to catch errors early</li>
+                <li>Test on mobile frequently - responsive issues are easier to fix early</li>
+                <li>Save after each successful step</li>
+                <li>If something breaks, restore from backup and try again</li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="QUICKSTART.md" class="cta-button">📖 Read Quickstart Guide</a>
+            <a href="IMPLEMENTATION-GUIDE.md" class="cta-button">📋 Detailed Instructions</a>
+        </div>
+    </div>
+    
+    <script>
+        // Calculate and update progress
+        function updateProgress() {
+            const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checkedBoxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const percentage = Math.round((checkedBoxes.length / allCheckboxes.length) * 100);
+            
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = percentage + '% Complete';
+            
+            // Save state to localStorage
+            const checkboxStates = {};
+            allCheckboxes.forEach(cb => {
+                checkboxStates[cb.id] = cb.checked;
+            });
+            localStorage.setItem('6040-vista-checklist', JSON.stringify(checkboxStates));
+        }
+        
+        // Load saved state
+        function loadProgress() {
+            const saved = localStorage.getItem('6040-vista-checklist');
+            if (saved) {
+                const checkboxStates = JSON.parse(saved);
+                Object.keys(checkboxStates).forEach(id => {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) {
+                        checkbox.checked = checkboxStates[id];
+                    }
+                });
+                updateProgress();
+            }
+        }
+        
+        // Attach event listeners
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', updateProgress);
+        });
+        
+        // Load progress on page load
+        loadProgress();
+        
+        // Print functionality
+        function printChecklist() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
