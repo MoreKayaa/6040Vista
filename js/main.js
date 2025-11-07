@@ -403,14 +403,14 @@ window.addEventListener('resize', function() {
 });
 
 // Add CSS class for resize animation stopping
-const style = document.createElement('style');
-style.textContent = `
-    .resize-animation-stopper * {
-        animation: none !important;
-        transition: none !important;
-    }
-`;
-document.head.appendChild(style);
+// const style = document.createElement('style');
+// style.textContent = `
+//     .resize-animation-stopper * {
+//         animation: none !important;
+//         transition: none !important;
+//     }
+// `;
+// document.head.appendChild(style);
 
 // ============================================
 // SCROLL TO TOP BUTTON (Optional Enhancement)

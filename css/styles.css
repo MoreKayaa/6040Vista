@@ -793,7 +793,6 @@ img {
     position: relative;
     z-index: auto;
 }
-
 .amenity-item {
     text-align: center;
     padding: 2rem 1rem;
@@ -1176,12 +1175,18 @@ img {
     }
     
     /* Hero */
+    .hero {
+        min-height: 600px;
+        height: auto;
+    }
+
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2rem !important;
+        margin-bottom: 1rem;
     }
     
     .hero-subtitle {
-        font-size: 1.125rem;
+        font-size: 1rem !important;
     }
     
     .hero-stats {
@@ -1194,6 +1199,7 @@ img {
     
     .hero-cta {
         flex-direction: column;
+        width: 100%;
         gap: 1rem;
     }
     
@@ -2385,6 +2391,7 @@ img[loading="lazy"] {
 .carousel-slide {
     flex: 0 0 calc(33.333% - 1.5rem); /* 3 cards on desktop */
     background: var(--white);
+    max-width: 400px;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
@@ -2417,7 +2424,7 @@ img[loading="lazy"] {
 }
 
 .carousel-slide-content {
-    padding: 2rem;
+    padding: 2.5rem;
 }
 
 .carousel-slide-title {
@@ -3464,7 +3471,7 @@ nav img[alt*="Logo"] {
 }
 
 .form-section {
-    margin-bottom: 0px;
+    margin-bottom: 40px;
 }
 
 /* Ensure labels don't overlap inputs */
