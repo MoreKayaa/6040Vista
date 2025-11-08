@@ -131,7 +131,9 @@ img {
     border-radius: 30px;
     margin-bottom: 1rem;
 }
-
+.amenities-section  .hero-with-bg .container {
+    margin-top: 2rem;
+}
 .section-tag.light {
     background: var(--white);
     color: var(--bronze);
