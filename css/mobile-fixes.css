@@ -1,0 +1,694 @@
+/* ============================================
+   6040 VISTA - MOBILE & OVERLAP FIXES
+   Add these to your styles.css or create separate file
+   ============================================ */
+
+/* ============================================
+   FIX #1: NAV BAR OVERLAP ISSUES
+   Prevents hero/header sections from hiding behind navbar
+   ============================================ */
+
+/* All hero sections with backgrounds */
+.hero-with-bg,
+.hero,
+.parallax-section {
+    padding-top: 180px !important; /* Increased from default */
+    min-height: 100vh;
+}
+
+.hero-with-bg .container,
+.hero .container {
+    padding-top: 2rem;
+}
+
+/* Specific fix for amenities.html header */
+.hero-with-bg .section-tag {
+    margin-top: 2rem;
+}
+
+.hero-with-bg h1 {
+    margin-top: 1rem;
+}
+
+/* ============================================
+   FIX #2: MOBILE CAROUSEL HEIGHT
+   Reduces excessive height on mobile
+   ============================================ */
+
+@media (max-width: 768px) {
+    .units-carousel-section {
+        padding: 3rem 0 !important;
+    }
+    
+    .carousel-container {
+        padding: 0 1rem;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+    
+    .carousel-slide {
+        min-height: auto !important;
+        max-height: 700px !important; /* Prevents excessive height */
+    }
+    
+    .carousel-slide-image {
+        height: 220px !important; /* Reduced from 300px */
+    }
+    
+    .carousel-slide-content {
+        padding: 1.5rem 1rem !important;
+    }
+    
+    /* Remove excessive spacing */
+    .carousel-header {
+        margin-bottom: 2rem !important;
+        padding: 0 1rem;
+    }
+    
+    .carousel-header h2 {
+        font-size: 1.75rem !important;
+        margin-bottom: 0.5rem;
+    }
+    
+    .carousel-header p {
+        font-size: 1rem !important;
+    }
+    
+    /* Compact feature list */
+    .unit-features {
+        margin-bottom: 1rem !important;
+    }
+    
+    .unit-features li {
+        padding: 0.35rem 0 !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .unit-description {
+        font-size: 0.9rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Carousel controls spacing */
+    .carousel-indicators {
+        margin-top: 1.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+}
+
+/* ============================================
+   FIX #3: CONTACT.HTML MOBILE OPTIMIZATION
+   Makes contact page fit properly on mobile
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Prevent horizontal overflow */
+    body {
+        overflow-x: hidden !important;
+    }
+    
+    .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        max-width: 100% !important;
+    }
+    
+    /* Contact page specific fixes */
+    .contact-hero,
+    .contact-section {
+        padding: 80px 0 40px 0 !important;
+    }
+    
+    .contact-hero h1 {
+        font-size: 2rem !important;
+        padding: 0 1rem;
+    }
+    
+    .contact-hero p {
+        font-size: 1rem !important;
+        padding: 0 1rem;
+    }
+    
+    /* Contact grid - stack vertically */
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        padding: 0 1rem;
+    }
+    
+    /* Contact cards */
+    .contact-card {
+        padding: 1.5rem 1rem !important;
+        margin: 0 !important;
+    }
+    
+    .contact-card h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    .contact-card p,
+    .contact-card a {
+        font-size: 0.95rem !important;
+        word-break: break-word;
+    }
+    
+    /* Contact form */
+    .contact-form {
+        padding: 2rem 1rem !important;
+        margin: 0 !important;
+    }
+    
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+    
+    .contact-form button {
+        width: 100% !important;
+        padding: 1rem !important;
+    }
+    
+    /* Map container */
+    .contact-map,
+    .map-container {
+        height: 300px !important;
+        width: 100% !important;
+        margin: 1rem 0 !important;
+    }
+    
+    /* Office hours / info boxes */
+    .info-box,
+    .hours-box {
+        padding: 1rem !important;
+        margin: 1rem 0 !important;
+    }
+    
+    /* Social media links */
+    .social-links {
+        justify-content: center !important;
+        gap: 1rem !important;
+        flex-wrap: wrap;
+    }
+}
+
+/* ============================================
+   FIX #4: LOCATION.HTML HEADER OVERLAP
+   Fixes nav bar overlapping header on mobile
+   ============================================ */
+
+@media (max-width: 768px) {
+    .hero-with-bg {
+        padding-top: 150px !important;
+        min-height: 500px !important;
+    }
+    
+    .hero-with-bg .container {
+        padding-top: 1.5rem;
+    }
+    
+    .hero-with-bg .section-tag {
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        padding: 0.4rem 1.2rem;
+    }
+    
+    .hero-with-bg h1 {
+        font-size: 2rem !important;
+        margin-top: 0.75rem;
+        line-height: 1.2;
+    }
+    
+    .hero-with-bg p {
+        font-size: 1rem !important;
+        padding: 0 1rem;
+    }
+}
+
+/* ============================================
+   FIX #5: HOME MAP PREVIEW REPLACEMENT
+   Replaces interactive map with static image
+   ============================================ */
+
+#homeMapPreview {
+    width: 100%;
+    height: 500px;
+    background: var(--cream);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#homeMapPreview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Placeholder styling when no image */
+#homeMapPreview:empty::before {
+    content: 'Map Preview';
+    font-size: 1.5rem;
+    color: var(--text-light);
+    font-family: var(--font-heading);
+}
+
+@media (max-width: 768px) {
+    #homeMapPreview {
+        height: 300px;
+    }
+}
+
+/* ============================================
+   FIX #6: LOCATION.HTML NUMBER ANIMATIONS
+   Adds scroll-triggered count-up animations
+   ============================================ */
+
+/* Highlight cards container */
+.location-highlights {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.highlight-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.highlight-card:nth-child(1) { animation-delay: 0.1s; }
+.highlight-card:nth-child(2) { animation-delay: 0.2s; }
+.highlight-card:nth-child(3) { animation-delay: 0.3s; }
+.highlight-card:nth-child(4) { animation-delay: 0.4s; }
+.highlight-card:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.highlight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(58, 53, 48, 0.15);
+}
+
+.highlight-icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    background: linear-gradient(135deg, var(--gold), var(--bronze));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Number animation */
+.highlight-icon::before {
+    content: attr(data-number);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    font-family: var(--font-heading);
+}
+
+/* Animated number - will count up */
+.highlight-icon[data-animated="true"]::before {
+    animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.highlight-text {
+    flex: 1;
+}
+
+.highlight-text h4 {
+    font-size: 1.25rem;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-heading);
+}
+
+.highlight-text p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .location-highlights {
+        gap: 1rem;
+    }
+    
+    .highlight-card {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .highlight-icon {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+    }
+    
+    .highlight-icon::before {
+        font-size: 1.25rem;
+    }
+    
+    .highlight-text h4 {
+        font-size: 1.1rem;
+    }
+    
+    .highlight-text p {
+        font-size: 0.875rem;
+    }
+}
+
+/* ============================================
+   FIX #7: NAVIGATION BAR MOBILE BUTTON FIX
+   Ensures Investment Inquiry button stays in view
+   ============================================ */
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.75rem 0;
+    }
+    
+    .nav-container {
+        padding: 0 1rem;
+        width: 100%;
+    }
+    
+    /* Logo sizing */
+    .logo img,
+    .logo-img,
+    .nav-logo {
+        height: 40px !important;
+        width: auto !important;
+    }
+    
+    /* Mobile menu */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 80%;
+        max-width: 300px;
+        background: var(--cream);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 80px;
+        align-items: center;
+        gap: 1.5rem;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 20px var(--shadow);
+        overflow-y: auto;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        right: 0;
+    }
+    
+    /* Nav links in mobile menu */
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+        padding: 0 1rem;
+    }
+    
+    .nav-link {
+        display: block;
+        padding: 0.75rem 0;
+        color: var(--charcoal) !important;
+        font-size: 1.1rem;
+    }
+    
+    /* Investment Inquiry button in mobile menu */
+    .btn-primary-nav {
+        display: block !important;
+        width: calc(100% - 2rem) !important;
+        margin: 1rem 1rem !important;
+        padding: 1rem !important;
+        text-align: center;
+    }
+    
+    /* Hamburger menu */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 1001;
+        padding: 0.5rem;
+    }
+    
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: var(--white);
+        transition: all 0.3s ease;
+        border-radius: 3px;
+    }
+    
+    .navbar.scrolled .hamburger span {
+        background: var(--bronze);
+    }
+    
+    /* Hamburger animation when active */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+}
+
+/* ============================================
+   FIX #8: GENERAL MOBILE CONTAINER FIXES
+   Prevents overflow and ensures proper spacing
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Prevent any horizontal scroll */
+    html, body {
+        overflow-x: hidden !important;
+        max-width: 100vw;
+    }
+    
+    /* All sections proper padding */
+    section {
+        padding: 3rem 0 !important;
+    }
+    
+    /* Container max-width */
+    .container {
+        max-width: 100% !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        margin: 0 auto;
+    }
+    
+    /* Heading sizes */
+    h1 { font-size: 2rem !important; }
+    h2 { font-size: 1.75rem !important; }
+    h3 { font-size: 1.5rem !important; }
+    h4 { font-size: 1.25rem !important; }
+    
+    /* Paragraph spacing */
+    p {
+        font-size: 1rem !important;
+        line-height: 1.6;
+    }
+    
+    /* Button full-width on mobile */
+    .btn-primary,
+    .btn-secondary,
+    .btn-primary-large {
+        width: 100%;
+        padding: 1rem 1.5rem !important;
+        font-size: 1rem !important;
+    }
+    
+    /* Images responsive */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Grid layouts stack on mobile */
+    .grid,
+    .overview-grid,
+    .units-grid,
+    .amenities-grid,
+    .location-content,
+    .contact-grid {
+        display: flex !important;
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+}
+
+/* ============================================
+   FIX #9: LOCATION CONTENT WRAPPER
+   Organizes location highlights and map side-by-side (desktop)
+   Stacks on mobile
+   ============================================ */
+
+.location-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 3rem;
+}
+
+.location-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.map-section {
+    position: sticky;
+    top: 100px;
+}
+
+@media (max-width: 968px) {
+    .location-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .map-section {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .location-content-wrapper {
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+}
+
+/* ============================================
+   FIX #10: FOOTER MOBILE OPTIMIZATION
+   ============================================ */
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 3rem 0 2rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        padding: 0 1rem;
+    }
+    
+    .footer-column {
+        text-align: center;
+    }
+    
+    .footer-column h3,
+    .footer-column h4 {
+        font-size: 1.25rem;
+    }
+    
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+    
+    .footer-bottom {
+        padding: 1.5rem 1rem 0;
+    }
+    
+    .footer-bottom p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================
+   ADDITIONAL UTILITY CLASSES
+   ============================================ */
+
+/* Show only on mobile */
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-only {
+        display: block;
+    }
+    
+    .desktop-only {
+        display: none !important;
+    }
+}
+
+/* Prevent text selection on UI elements */
+.nav-link,
+.btn-primary,
+.btn-secondary,
+.hamburger {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Smooth scrolling for all browsers */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Touch-friendly tap targets */
+@media (max-width: 768px) {
+    a, button, .clickable {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

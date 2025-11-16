@@ -40,6 +40,8 @@
     <link rel="manifest" href="images/site.webmanifest">
 
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/mobile-fixes.css">
+    <link rel="stylesheet" href="css/additional-fixes.css">
     <link rel="stylesheet" href="css/sketch-map.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
@@ -83,6 +85,7 @@
             <p style="max-width: 700px; margin: 1.5rem auto; font-size: 1.25rem;">Gitere, Northern Bypass - Nairobi's fastest-appreciating corridor</p>
         </div>
     </section>
+
     <!-- <section style="padding: 80px 0; background: var(--white);">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 3rem;">Strategic Positioning</h2>
@@ -168,12 +171,11 @@
         </div>
     </section> -->
     
-    <section style="padding: 80px 0; background: var(--white);">
+    <!-- <section style="padding: 80px 0; background: var(--white);">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 3rem;">Strategic Positioning & Interactive Map</h2>
             <div class="location-content-wrapper">
                 
-                <!-- Location Highlights -->
                 <div class="location-highlights">
                     
                     <div class="highlight-card">
@@ -233,13 +235,107 @@
 
                 </div>
 
-                <!-- Map Section -->
+    
                 <div class="map-placeholder">
                     <img src="images/sketch-map-placeholder.png" 
                         alt="Proximity Sketch map" 
                         class="location-map-image clickable">
                 </div>
 
+            </div>
+        </div>
+    </section> -->
+
+    <section style="padding: 80px 0; background: var(--white);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Strategic Positioning & Proximity</h2>
+            
+            <div class="location-content-wrapper">
+                <!-- Animated Highlights Column -->
+                <div class="location-highlights">
+                    <!-- 100M to Northern Bypass -->
+                    <div class="highlight-card">
+                        <div class="highlight-icon" 
+                            data-number="100" 
+                            data-suffix="M" 
+                            data-duration="2000">
+                            <!-- Number will animate here -->
+                        </div>
+                        <div class="highlight-text">
+                            <h4>100 meters to Northern Bypass</h4>
+                            <p>Major arterial highway providing seamless connectivity across Nairobi</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 15 Minutes to GCM & Westlands -->
+                    <div class="highlight-card">
+                        <div class="highlight-icon" 
+                            data-number="15" 
+                            data-suffix=" min" 
+                            data-duration="2000">
+                            <!-- Number will animate here -->
+                        </div>
+                        <div class="highlight-text">
+                            <h4>15 minutes to GCM & Westlands</h4>
+                            <p>Primary business districts with major employment opportunities</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 12 Minutes to Karura Forest -->
+                    <div class="highlight-card">
+                        <div class="highlight-icon" 
+                            data-number="12" 
+                            data-suffix=" min" 
+                            data-duration="2000">
+                            <!-- Number will animate here -->
+                        </div>
+                        <div class="highlight-text">
+                            <h4>12 minutes to Karura Forest</h4>
+                            <p>Premium recreational facility and nature reserve for outdoor activities</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 8 Minutes to Two Rivers Mall -->
+                    <div class="highlight-card">
+                        <div class="highlight-icon" 
+                            data-number="8" 
+                            data-suffix=" min" 
+                            data-duration="2000">
+                            <!-- Number will animate here -->
+                        </div>
+                        <div class="highlight-text">
+                            <h4>8 minutes to Two Rivers Mall</h4>
+                            <p>East Africa's largest shopping and entertainment complex</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 2 Minute Walk to Windsor Golf -->
+                    <div class="highlight-card">
+                        <div class="highlight-icon" 
+                            data-number="2" 
+                            data-suffix=" min" 
+                            data-duration="2000">
+                            <!-- Number will animate here -->
+                        </div>
+                        <div class="highlight-text">
+                            <h4>2 minute walk to Windsor Golf</h4>
+                            <p>Prestigious golf and country club with world-class facilities</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Map Preview Column -->
+                <div class="map-section">
+                    <div id="homeMapPreview">
+                        <!-- Replace with your actual map image -->
+                        <img src="images/sketch-map-placeholder.png" 
+                            alt="Proximity Sketch map" 
+                            loading="lazy">
+                    </div>
+                    <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        📍 Strategic location connecting you to Nairobi's key destinations
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -286,6 +382,7 @@
         </div>
     </footer>
     <script src="js/whatsapp-integration.js"></script>
+    <script src="js/location-animation.js"></script>
     <script src="js/sketch-map.js"></script>
     <script src="js/interactive-map.js"></script>
     <script src="js/main.js"></script>
