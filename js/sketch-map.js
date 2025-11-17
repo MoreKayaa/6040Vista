@@ -244,14 +244,24 @@ class SketchMap {
 
 // Initialize map when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    const mapContainer = document.getElementById('sketch-map-container');
-    
-    if (mapContainer) {
-        const map = new SketchMap('sketch-map-container');
-        
-        // Make map accessible globally
-        window.sketchMap = map;
-    }
+  const mapContainer = document.getElementById("sketch-map-container");
+
+  if (mapContainer) {
+    const map = new SketchMap("sketch-map-container");
+
+    // Make map accessible globally
+    window.sketchMap = map;
+  }
+
+  // Home page preview map
+  const homeMapPreview = document.getElementById("homeMapPreview");
+
+  if (homeMapPreview) {
+    const homeMap = new SketchMap("homeMapPreview");
+
+    // Make map accessible globally
+    window.homeSketchMap = homeMap;
+  }
 });
 
 /**
