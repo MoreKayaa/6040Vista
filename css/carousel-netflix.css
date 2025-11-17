@@ -20,6 +20,7 @@
     position: relative;
 }
 
+/* Carousel Header */
 .carousel-header {
     text-align: center;
     margin-bottom: 60px;
@@ -27,14 +28,14 @@
 
 .carousel-header h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: clamp(2rem, 4vw, 3rem);
     color: #2C2420;
     margin-bottom: 15px;
 }
 
 .carousel-header p {
     font-family: 'Lato', sans-serif;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     color: #6B5D52;
 }
 
@@ -57,10 +58,11 @@
 /* Individual Slide */
 .carousel-slide {
     min-width: 100%;
+    flex-shrink: 0;
     display: flex;
     align-items: stretch;
     background: #FFFFFF;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.4s ease-in-out;
 }
 
@@ -74,7 +76,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 600px;
+    min-height: 500px;
     position: relative;
 }
 
@@ -119,7 +121,7 @@
 /* Unit Title */
 .unit-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: #2C2420;
     margin-bottom: 15px;
     line-height: 1.2;
@@ -133,6 +135,7 @@
     padding: 20px 0;
     border-top: 2px solid #E8DCC4;
     border-bottom: 2px solid #E8DCC4;
+    flex-wrap: wrap;
 }
 
 .spec-item {
@@ -159,7 +162,7 @@
 /* Unit Description */
 .unit-description {
     font-family: 'Lato', sans-serif;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
     line-height: 1.8;
     color: #4A4A4A;
     margin-bottom: 30px;
@@ -317,23 +320,27 @@
         padding: 40px;
     }
     
-    .unit-title {
-        font-size: 2rem;
-    }
-    
     .carousel-header h2 {
         font-size: 2.5rem;
     }
 }
 
 @media (max-width: 968px) {
+    .carousel-track {
+        display: flex;
+        flex-direction: row;
+    }
+
     .carousel-slide {
         flex-direction: column;
+        min-width: 100%;
+        width: 100%;
     }
     
     .slide-image {
-        flex: 0 0 auto;
-        min-height: 400px;
+        flex: 0 0 250px;
+        min-height: 250px;
+        max-height: 250px;
         width: 100%;
     }
     
@@ -351,6 +358,10 @@
         width: 50px;
         height: 50px;
     }
+    
+    .carousel-nav {
+        padding: 0 10px;
+    }
 }
 
 @media (max-width: 640px) {
@@ -358,28 +369,29 @@
         padding: 60px 0;
     }
     
-    .carousel-header h2 {
-        font-size: 2rem;
+    .carousel-container {
+        padding: 0 10px;
     }
     
-    .carousel-header p {
-        font-size: 1rem;
+    .carousel-header {
+        margin-bottom: 40px;
     }
     
     .slide-image {
-        min-height: 300px;
+        min-height: 200px;
+        max-height: 200px;
     }
     
     .slide-content {
         padding: 30px 20px;
     }
     
-    .unit-title {
-        font-size: 1.75rem;
+    .unit-badge {
+        padding: 6px 16px;
+        font-size: 0.8rem;
     }
     
     .unit-specs {
-        flex-wrap: wrap;
         gap: 15px;
     }
     
@@ -387,21 +399,34 @@
         font-size: 1.25rem;
     }
     
-    .unit-description {
-        font-size: 1rem;
-    }
-    
     .carousel-arrow {
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
     }
     
-    .carousel-nav {
-        padding: 0 10px;
+    .carousel-arrow svg {
+        width: 18px;
+        height: 18px;
     }
     
     .carousel-cta {
         width: 100%;
         text-align: center;
+        padding: 14px 32px;
+        font-size: 1rem;
+    }
+    
+    .carousel-indicators {
+        margin-top: 30px;
+        gap: 10px;
+    }
+    
+    .indicator-dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .indicator-dot.active {
+        width: 30px;
     }
 }
