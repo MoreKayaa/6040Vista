@@ -65,36 +65,39 @@
         </div>
     </nav>
     
-    <section style="padding: 150px 0 80px; background: linear-gradient(135deg, var(--cream), var(--beige)); text-align: center;">
+    <!-- Hero Section -->
+    <section class="contact-hero">
         <div class="container">
             <span class="section-tag">Get In Touch</span>
             <h1>Contact Our Investment Team</h1>
-            <p style="max-width: 700px; margin: 1.5rem auto; font-size: 1.25rem;">We're here to answer your questions and guide you through your investment journey.</p>
+            <p>We're here to answer your questions and guide you through your investment journey.</p>
         </div>
     </section>
 
-    <section style="padding: 80px 0; background: var(--white);">
+    <!-- Contact Content -->
+    <section class="contact-section">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
-                <div>
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper">
                     <h2>Send Us a Message</h2>
-                    <p style="margin-bottom: 2rem;">Fill out the form and our team will respond within 24 hours.</p>
-                    <form id="contactForm" style="display: flex; flex-direction: column; gap: 1.5rem;">
-                        <div>
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Your Name *</label>
-                            <input type="text" name="name" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body); font-size: 1rem;">
+                    <p>Fill out the form and our team will respond within 24 hours.</p>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label>Your Name *</label>
+                            <input type="text" name="name" required>
                         </div>
-                        <div>
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email Address *</label>
-                            <input type="email" name="email" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body); font-size: 1rem;">
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" name="email" required>
                         </div>
-                        <div>
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Phone Number *</label>
-                            <input type="tel" name="phone" required style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body); font-size: 1rem;">
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" name="phone" required>
                         </div>
-                        <div>
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Subject</label>
-                            <select name="subject" style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body); font-size: 1rem;">
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <select name="subject">
                                 <option>General Inquiry</option>
                                 <option>Schedule Viewing</option>
                                 <option>Request Brochure</option>
@@ -102,41 +105,37 @@
                                 <option>Other</option>
                             </select>
                         </div>
-                        <div>
-                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Your Message *</label>
-                            <textarea name="message" required rows="5" style="width: 100%; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px; font-family: var(--font-body); font-size: 1rem; resize: vertical;"></textarea>
+                        <div class="form-group">
+                            <label>Your Message *</label>
+                            <textarea name="message" required rows="5"></textarea>
                         </div>
-                        <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+                        <button type="submit" class="btn-primary">Send Message</button>
                     </form>
                 </div>
-                <div>
+                
+                <!-- Contact Info -->
+                <div class="contact-info-wrapper">
                     <h2>Contact Information</h2>
-                    <div style="background: var(--cream); padding: 2.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                    
+                    <div class="info-card">
                         <h3>Sales Office</h3>
-                        <p style="margin: 1rem 0; line-height: 1.8;">
-                            <strong>Sales Manager:</strong> Ren Yuan<br>
-                            <strong>Email:</strong> <a href="mailto:vista6040sales@gmail.com" style="color: var(--bronze);">vista6040sales@gmail.com</a><br>
-                            <strong>Phone:</strong> <a href="tel:+254745118118" style="color: var(--bronze);">+254 745 118 118</a><br>
-                            <strong>Technical:</strong> <a href="tel:+254759681867" style="color: var(--bronze);">+254 759 681 867</a>
-                        </p>
+                        <p><strong>Sales Manager:</strong> Ren Yuan</p>
+                        <p><strong>Email:</strong> <a href="mailto:vista6040sales@gmail.com">vista6040sales@gmail.com</a></p>
+                        <p><strong>Phone:</strong> <a href="tel:+254745118118">+254 745 118 118</a></p>
+                        <p><strong>Technical:</strong> <a href="tel:+254759681867">+254 759 681 867</a></p>
                     </div>
-                    <div style="background: var(--cream); padding: 2.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                    
+                    <div class="info-card">
                         <h3>Project Location</h3>
-                        <p style="margin: 1rem 0;">
-                            Gitere, Northern Bypass<br>
-                            Nairobi, Kenya<br><br>
-                        </p>
+                        <p>Gitere, Northern Bypass<br>Nairobi, Kenya</p>
                     </div>
-                    <div style="background: var(--cream); padding: 2.5rem; border-radius: 12px;">
+                    
+                    <div class="info-card">
                         <h3>Office Hours</h3>
-                        <p style="margin: 1rem 0;">
-                            <p><strong>Monday - Friday:</strong> 9:30 AM - 5:00 PM</p>
-                            <p><strong>Saturday:</strong> By Appointment Only</p>
-                            <p><strong>Sunday & Public Holidays:</strong> Closed</p>
-                            <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--text-secondary);">
-                                <em>Site visits available during business hours and by special appointment</em>
-                            </p>
-                        </p>
+                        <p><strong>Monday - Friday:</strong> 9:30 AM - 5:00 PM</p>
+                        <p><strong>Saturday:</strong> By Appointment Only</p>
+                        <p><strong>Sunday & Public Holidays:</strong> Closed</p>
+                        <p class="small-text"><em>Site visits available during business hours and by special appointment</em></p>
                     </div>
                 </div>
             </div>
@@ -152,6 +151,7 @@
             <div class="footer-bottom"><p>&copy; 2025 6040 Vista. All rights reserved.</p></div>
         </div>
     </footer>
+    
     <script src="js/whatsapp-integration.js"></script>
     <script src="js/main.js"></script>
     <script>
