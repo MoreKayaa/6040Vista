@@ -172,32 +172,23 @@
                     <div class="highlight-card">
                         <div class="highlight-icon">🛣️</div>
                         <div class="highlight-text">
-                            <div class="animated-stat">
-                                <h3><span data-count="100">0</span><span class="stat-unit">m</span></h3>
-                                <p>To Northern Bypass</p>
-                            </div>
-                            <p>Major arterial highway providing seamless connectivity</p>
+                            <h4><span data-animate-number="100" data-suffix="M">100M</span> to Northern Bypass</h4>
+                            <p>Major arterial highway providing seamless connectivity across Nairobi</p>
                         </div>
                     </div>
 
                     <div class="highlight-card">
                         <div class="highlight-icon">🏢</div>
                         <div class="highlight-text">
-                            <div class="animated-stat">
-                                <h3><span data-count="15">0</span><span class="stat-unit">min</span></h3>
-                                <p>To GCM &amp; Westlands</p>
-                            </div>
-                            <p>Primary business districts with major employment</p>
+                            <h4><span data-animate-number="15" data-suffix=" min">15 min</span> to GCM & Westlands</h4>
+                            <p>Primary business districts with major employment opportunities</p>
                         </div>
                     </div>
 
                     <div class="highlight-card">
                         <div class="highlight-icon">🌳</div>
                         <div class="highlight-text">
-                            <div class="animated-stat">
-                                <h3><span data-count="12">0</span><span class="stat-unit">min</span></h3>
-                                <p>To Karura Forest</p>
-                            </div>
+                            <h4><span data-animate-number="12" data-suffix=" min">12 min</span> to Karura Forest</h4>
                             <p>Premium recreational facility and nature reserve</p>
                         </div>
                     </div>
@@ -205,21 +196,15 @@
                     <div class="highlight-card">
                         <div class="highlight-icon">🛍️</div>
                         <div class="highlight-text">
-                            <div class="animated-stat">
-                                <h3><span data-count="8">0</span><span class="stat-unit">min</span></h3>
-                                <p>To Two Rivers Mall</p>
-                            </div>
-                            <p>East Africa's largest shopping complex</p>
+                            <h4><span data-animate-number="8" data-suffix=" min">8 min</span> to Two Rivers Mall</h4>
+                            <p>East Africa's largest shopping and entertainment complex</p>
                         </div>
                     </div>
 
                     <div class="highlight-card">
                         <div class="highlight-icon">⛳</div>
                         <div class="highlight-text">
-                            <div class="animated-stat">
-                                <h3><span data-count="2">0</span><span class="stat-unit">min</span></h3>
-                                <p>Walk to Windsor Golf</p>
-                            </div>
+                            <h4><span data-animate-number="2" data-suffix=" min">2 min</span> walk to Windsor Golf</h4>
                             <p>Prestigious golf and country club</p>
                         </div>
                     </div>
@@ -227,10 +212,11 @@
                 </div>
 
                 <!-- Map Section -->
-                <div class="map-placeholder">
-                    <img src="images/High Obligue Aerial Render.webp" 
-                        alt="Proximity Sketch map" 
-                        class="location-map-image clickable">
+                <div class="map-section">
+                    <div id="locationInteractiveMap"></div>
+                    <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        Click landmarks for details & directions • Hover for quick info
+                    </p>
                 </div>
 
             </div>
@@ -247,11 +233,11 @@
                 </div>
                 <div style="background: var(--white); padding: 2rem; border-radius: 12px;">
                     <h3>Recreation</h3>
-                    <p>Karura Forest, Windsor Golf Club, gyms, restaurants</p>
+                    <p>Karura Forest, Golf Club, gyms, restaurants</p>
                 </div>
                 <div style="background: var(--white); padding: 2rem; border-radius: 12px;">
                     <h3>Schools</h3>
-                    <p>Brookhouse School, Braeburn School, ISK nearby</p>
+                    <p>International Schools, ISK nearby</p>
                 </div>
                 <div style="background: var(--white); padding: 2rem; border-radius: 12px;">
                     <h3>Healthcare</h3>
@@ -278,9 +264,9 @@
             <div class="footer-bottom"><p>&copy; 2025 6040 Vista. All rights reserved.</p></div>
         </div>
     </footer>
-    <script src="js/whatsapp-integration.js"></script>
-    <script src="js/sketch-map.js"></script>
+    <script src="js/number-animations.js"></script>
     <script src="js/interactive-map.js"></script>
+    <script src="js/whatsapp-integration.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
