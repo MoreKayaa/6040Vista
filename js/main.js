@@ -407,94 +407,8 @@ window.addEventListener('resize', function() {
 // style.textContent = `
 //     .resize-animation-stopper * {
 //         animation: none !important;
-//         transition: none !important;
-//     }
 // `;
 // document.head.appendChild(style);
-
-// ============================================
-// SCROLL TO TOP BUTTON (Optional Enhancement)
-// ============================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Create button
-    const scrollTopBtn = document.createElement('button');
-    scrollTopBtn.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-        </svg>
-    `;
-    scrollTopBtn.className = 'scroll-to-top';
-    scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
-    document.body.appendChild(scrollTopBtn);
-    
-    // Add styles
-    const scrollTopStyles = document.createElement('style');
-    scrollTopStyles.textContent = `
-        .scroll-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--gold), var(--bronze));
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(201, 168, 105, 0.3);
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .scroll-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(201, 168, 105, 0.4);
-        }
-        
-        .scroll-to-top svg {
-            width: 24px;
-            height: 24px;
-        }
-        
-        @media (max-width: 768px) {
-            .scroll-to-top {
-                bottom: 1.5rem;
-                right: 1.5rem;
-                width: 45px;
-                height: 45px;
-            }
-        }
-    `;
-    document.head.appendChild(scrollTopStyles);
-    
-    // Show/hide on scroll
-    window.addEventListener('scroll', debounce(function() {
-        if (window.scrollY > 500) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
-        }
-    }, 100));
-    
-    // Scroll to top on click
-    scrollTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-});
 
 // ============================================
 // FORM VALIDATION HELPERS (For other pages)
@@ -517,6 +431,54 @@ window.formValidation = {
     isValidEmail,
     isValidPhone
 };
+
+// ============================================
+// SCROLL TO TOP BUTTON
+// ============================================
+
+const scrollToTopBtn = document.getElementById('scrollToTop');
+
+if (scrollToTopBtn) {
+    // Show/hide button based on scroll position
+    function handleScrollToTopVisibility() {
+        if (window.scrollY > 500) {
+            scrollToTopBtn.classList.add('visible');
+        } else {
+            scrollToTopBtn.classList.remove('visible');
+        }
+    }
+    
+    window.addEventListener('scroll', debounce(handleScrollToTopVisibility, 100));
+    
+    // Scroll to top when clicked
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// ============================================
+// SMOOTH SCROLL FOR ANCHOR LINKS
+// ============================================
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && href !== '') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
 
 // ============================================
 // CONSOLE MESSAGE

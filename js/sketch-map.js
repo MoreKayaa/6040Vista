@@ -17,60 +17,69 @@ class SketchMap {
         
         // Location data with accurate positions and distances
         this.locations = [
-            {
-                id: 'northern-bypass',
-                name: 'Northern Bypass',
-                icon: '🛣️',
-                distance: '100M',
-                time: '2 min walk',
-                direction: 'N',
-                position: { top: '25%', left: '50%' }
-            },
-            {
-                id: 'westlands',
-                name: 'Westlands',
-                icon: '🏙️',
-                distance: '6.5 km',
-                time: '15 min drive',
-                direction: 'SW',
-                position: { top: '35%', left: '20%' }
-            },
-            {
-                id: 'gcm',
-                name: 'Garden City Mall',
-                icon: '🛍️',
-                distance: '5.8 km',
-                time: '12 min drive',
-                direction: 'NW',
-                position: { top: '30%', left: '25%' }
-            },
-            {
-                id: 'windsor-golf',
-                name: 'Windsor Golf Club',
-                icon: '⛳',
-                distance: '200M',
-                time: '2 min walk',
-                direction: 'E',
-                position: { top: '55%', left: '65%' }
-            },
-            {
-                id: 'karura-forest',
-                name: 'Karura Forest',
-                icon: '🌲',
-                distance: '4.2 km',
-                time: '10 min drive',
-                direction: 'W',
-                position: { top: '40%', left: '35%' }
-            },
-            {
-                id: 'two-rivers',
-                name: 'Two Rivers Mall',
-                icon: '🏬',
-                distance: '3.5 km',
-                time: '8 min drive',
-                direction: 'SE',
-                position: { top: '65%', left: '75%' }
-            }
+          {
+            id: "northern-bypass",
+            name: "Northern Bypass",
+            icon: "🛣️",
+            distance: "100M",
+            time: "2 min walk",
+            direction: "N",
+            position: { top: "25%", left: "50%" },
+          },
+          {
+            id: "westlands",
+            name: "Westlands",
+            icon: "🏙️",
+            distance: "6.5 km",
+            time: "15 min drive",
+            direction: "SW",
+            position: { top: "35%", left: "20%" },
+          },
+          {
+            id: "gcm",
+            name: "Garden City Mall",
+            icon: "🛍️",
+            distance: "5.8 km",
+            time: "12 min drive",
+            direction: "NW",
+            position: { top: "30%", left: "25%" },
+          },
+          {
+            id: "windsor-golf",
+            name: "Golf Club",
+            icon: "⛳",
+            distance: "200M",
+            time: "2 min walk",
+            direction: "E",
+            position: { top: "55%", left: "65%" },
+          },
+          {
+            id: "karura-forest",
+            name: "Karura Forest",
+            icon: "🌲",
+            distance: "4.2 km",
+            time: "10 min drive",
+            direction: "W",
+            position: { top: "40%", left: "35%" },
+          },
+          {
+            id: "two-rivers",
+            name: "Two Rivers Mall",
+            icon: "🏬",
+            distance: "3.5 km",
+            time: "8 min drive",
+            direction: "SE",
+            position: { top: "65%", left: "75%" },
+          },
+          {
+            id: "international-school",
+            name: "International School",
+            icon: "🎓",
+            distance: "1.8 km",
+            time: "5 min drive",
+            direction: "NE",
+            position: { top: "45%", left: "70%" },
+          },
         ];
         
         this.init();

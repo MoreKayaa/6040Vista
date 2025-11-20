@@ -1,584 +1,680 @@
 /* ============================================
-   6040 VISTA - INTERACTIVE SVG MAP
-   Real coordinates with comprehensive features
+   6040 VISTA - INTERACTIVE MAP (UX OPTIMIZED)
+   Premium visual design with smooth interactions
    ============================================ */
 
 class InteractiveMap {
-    constructor(containerId, options = {}) {
-        this.container = document.getElementById(containerId);
-        if (!this.container) return;
-        
-        this.options = {
-            isPreview: options.isPreview || false,
-            showLegend: options.showLegend !== false,
-            enableModal: options.enableModal !== false,
-            width: 900,
-            height: options.isPreview ? 400 : 500,
-            ...options
-        };
-        
-        // Real approximate coordinates for Gitere/Northern Bypass area
-        this.landmarks = [
-            {
-                id: '6040-vista',
-                name: '6040 Vista',
-                lat: -1.2159,
-                lng: 36.8389,
-                type: 'development',
-                distance: '0M',
-                time: 'You are here',
-                description: 'Premium residential development with world-class amenities.',
-                details: 'Your strategic investment opportunity featuring modern 2 & 3 bedroom units with exceptional ROI potential.',
-                icon: '🏢',
-                color: '#C9A869',
-                isPrimary: true
-            },
-            {
-                id: 'northern-bypass',
-                name: 'Northern Bypass',
-                lat: -1.2165,
-                lng: 36.8417,
-                type: 'highway',
-                distance: '100M',
-                time: '1 min walk',
-                description: 'Major arterial highway connecting Nairobi regions.',
-                details: 'Critical transport infrastructure providing seamless access to all major business districts and residential areas throughout Nairobi.',
-                icon: '🛣️',
-                color: '#A37F4E'
-            },
-            {
-                id: 'windsor-golf',
-                name: 'Windsor Golf Club',
-                lat: -1.2185,
-                lng: 36.8391,
-                type: 'recreation',
-                distance: '150M',
-                time: '2 min walk',
-                description: 'Prestigious golf and country club.',
-                details: 'Exclusive recreational facility offering championship golf course, fine dining, and premium social amenities for discerning residents.',
-                icon: '⛳',
-                color: '#8B6F3D'
-            },
-            {
-                id: 'two-rivers',
-                name: 'Two Rivers Mall',
-                lat: -1.2028,
-                lng: 36.7939,
-                type: 'shopping',
-                distance: '3.2KM',
-                time: '8 min drive',
-                description: "East Africa's largest shopping destination.",
-                details: 'Comprehensive retail, dining, and entertainment complex featuring international brands, cinemas, restaurants, and lifestyle amenities.',
-                icon: '🛍️',
-                color: '#C9A869'
-            },
-            {
-                id: 'karura-forest',
-                name: 'Karura Forest',
-                lat: -1.2523,
-                lng: 36.8236,
-                type: 'nature',
-                distance: '4.1KM',
-                time: '12 min drive',
-                description: 'Urban forest and nature reserve.',
-                details: 'Pristine 1,041-hectare indigenous forest perfect for recreation, jogging trails, cycling, and family activities in natural surroundings.',
-                icon: '🌳',
-                color: '#3CB371'
-            },
-            {
-                id: 'village-market',
-                name: 'Village Market',
-                lat: -1.2359,
-                lng: 36.8075,
-                type: 'shopping',
-                distance: '4.8KM',
-                time: '12 min drive',
-                description: 'Premium shopping and dining complex.',
-                details: 'Upmarket retail center featuring restaurants, specialty shops, professional services, and the popular Nakumatt supermarket.',
-                icon: '🏪',
-                color: '#A37F4E'
-            },
-            {
-                id: 'westlands-gcm',
-                name: 'GCM & Westlands',
-                lat: -1.2644,
-                lng: 36.8123,
-                type: 'business',
-                distance: '6.5KM',
-                time: '15 min drive',
-                description: 'Major business and commercial districts.',
-                details: 'Primary employment hubs with corporate offices, international banks, restaurants, hotels, and comprehensive professional services.',
-                icon: '🏙️',
-                color: '#C9A869'
-            }
-        ];
-        
-        this.tooltip = null;
-        this.modal = null;
-        this.init();
-    }
-    
-    // init() {
-    //     this.createMapSVG();
-    //     this.createLandmarks();
-    //     if (this.options.showLegend && !this.options.isPreview) {
-    //         this.createLegend();
-    //     }
-    //     this.setupEventListeners();
-    // }
-    
-    init() {
-    this.calculateAllDistances(); // Add this line
-    this.createMapSVG();
+  constructor(containerId, options = {}) {
+    this.container = document.getElementById(containerId);
+    if (!this.container) return;
+
+    this.options = {
+      isPreview: options.isPreview || false,
+      showLegend: options.showLegend !== false,
+      enableModal: options.enableModal !== false,
+      width: 1000,
+      height: options.isPreview ? 450 : 600,
+      ...options,
+    };
+
+    // Location data with accurate coordinates
+    this.landmarks = [
+      {
+        id: "6040-vista",
+        name: "6040 Vista",
+        lat: -1.2159,
+        lng: 36.8389,
+        type: "development",
+        description: "Your premium investment destination",
+        details:
+          "Modern 2 & 3 bedroom units with world-class amenities and exceptional ROI potential.",
+        icon: "🏢",
+        color: "#C9A869",
+        isPrimary: true,
+      },
+      {
+        id: "northern-bypass",
+        name: "Northern Bypass",
+        lat: -1.2125,
+        lng: 36.8389,
+        type: "highway",
+        description: "Major arterial highway",
+        details:
+          "Critical transport infrastructure providing seamless access to all major business districts.",
+        icon: "🛣️",
+        color: "#A37F4E",
+      },
+      {
+        id: "golf-club",
+        name: "Golf Club",
+        lat: -1.2195,
+        lng: 36.845,
+        type: "recreation",
+        description: "Prestigious golf & country club",
+        details:
+          "Championship golf course, fine dining, and premium social amenities.",
+        icon: "⛳",
+        color: "#8B6F3D",
+      },
+      {
+        id: "international-school",
+        name: "International School",
+        lat: -1.214,
+        lng: 36.848,
+        type: "education",
+        description: "World-class education facility",
+        details:
+          "Premium international curriculum schools nearby including ISK, Brookhouse, and Braeburn.",
+        icon: "🎓",
+        color: "#A37F4E",
+      },
+      {
+        id: "two-rivers",
+        name: "Two Rivers Mall",
+        lat: -1.2028,
+        lng: 36.79,
+        type: "shopping",
+        description: "East Africa's largest mall",
+        details:
+          "Comprehensive retail, dining, and entertainment with international brands.",
+        icon: "🛍️",
+        color: "#C9A869",
+      },
+      {
+        id: "karura-forest",
+        name: "Karura Forest",
+        lat: -1.2523,
+        lng: 36.82,
+        type: "nature",
+        description: "Urban forest & nature reserve",
+        details:
+          "1,041-hectare forest with jogging trails, cycling, and family activities.",
+        icon: "🌳",
+        color: "#3CB371",
+      },
+      {
+        id: "westlands",
+        name: "Westlands & GCM",
+        lat: -1.2644,
+        lng: 36.808,
+        type: "business",
+        description: "Major business districts",
+        details:
+          "Corporate offices, banks, restaurants, hotels, and professional services.",
+        icon: "🏙️",
+        color: "#C9A869",
+      },
+    ];
+
+    this.tooltip = null;
+    this.modal = null;
+    this.activeMarker = null;
+    this.init();
+  }
+
+  init() {
+    this.calculateAllDistances();
+    this.createMapHTML();
     this.createLandmarks();
     if (this.options.showLegend && !this.options.isPreview) {
-        this.createLegend();
+      this.createLegend();
     }
     this.setupEventListeners();
-    }
+  }
 
-    calculateAllDistances() {
-    const vistaLandmark = this.landmarks.find(l => l.id === '6040-vista');
-    
-    this.landmarks.forEach(landmark => {
-        if (landmark.id !== '6040-vista') {
-            const distanceMeters = this.calculateDistance(
-                vistaLandmark.lat, vistaLandmark.lng,
-                landmark.lat, landmark.lng
-            );
-            landmark.calculatedDistance = this.formatDistance(distanceMeters);
-        }
+  calculateAllDistances() {
+    const vista = this.landmarks.find((l) => l.id === "6040-vista");
+
+    this.landmarks.forEach((landmark) => {
+      if (landmark.id !== "6040-vista") {
+        const distanceMeters = this.calculateDistance(
+          vista.lat,
+          vista.lng,
+          landmark.lat,
+          landmark.lng
+        );
+        landmark.calculatedDistance = this.formatDistance(distanceMeters);
+        landmark.calculatedTime = this.estimateTime(distanceMeters);
+      }
     });
-    }
+  }
 
+  calculateDistance(lat1, lng1, lat2, lng2) {
+    const R = 6371000; // Earth's radius in meters
+    const toRad = (deg) => (deg * Math.PI) / 180;
 
-    // Haversine distance calculation in meters
-    calculateDistance(lat1, lng1, lat2, lng2) {
-        const R = 6371000; // Earth's radius in meters
-        const toRad = (deg) => (deg * Math.PI) / 180;
-        
-        const dLat = toRad(lat2 - lat1);
-        const dLng = toRad(lng2 - lng1);
-        const a = Math.sin(dLat / 2) ** 2 +
-                  Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        
-        return R * c;
-    }
-    
-    formatDistance(meters) {
-        if (meters < 1000) return `${Math.round(meters)}M`;
-        return `${(meters / 1000).toFixed(1)}KM`;
-    }
-    
-    // Convert lat/lng to SVG coordinates
-    projectCoordinates() {
-        const lats = this.landmarks.map(l => l.lat);
-        const lngs = this.landmarks.map(l => l.lng);
-        
-        const minLat = Math.min(...lats);
-        const maxLat = Math.max(...lats);
-        const minLng = Math.min(...lngs);
-        const maxLng = Math.max(...lngs);
-        
-        const padding = 60;
-        const width = this.options.width - padding * 2;
-        const height = this.options.height - padding * 2;
-        
-        return (lat, lng) => {
-            const x = ((lng - minLng) / (maxLng - minLng)) * width + padding;
-            const y = ((maxLat - lat) / (maxLat - minLat)) * height + padding;
-            return { x, y };
-        };
-    }
-    
-    createMapSVG() {
-        const project = this.projectCoordinates();
-        
-        const mapHTML = `
-            <div class="map-container">
-                <svg viewBox="0 0 ${this.options.width} ${this.options.height}" style="width: 100%; height: 100%;">
+    const dLat = toRad(lat2 - lat1);
+    const dLng = toRad(lng2 - lng1);
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return R * c;
+  }
+
+  formatDistance(meters) {
+    if (meters < 1000) return `${Math.round(meters)}M`;
+    return `${(meters / 1000).toFixed(1)}KM`;
+  }
+
+  estimateTime(meters) {
+    if (meters < 500) return "2 min walk";
+    if (meters < 1000) return "5 min walk";
+    const minutes = Math.round((meters / 1000) * 3); // ~20 km/h avg
+    return `${minutes} min drive`;
+  }
+
+  projectCoordinates() {
+    const lats = this.landmarks.map((l) => l.lat);
+    const lngs = this.landmarks.map((l) => l.lng);
+
+    const minLat = Math.min(...lats);
+    const maxLat = Math.max(...lats);
+    const minLng = Math.min(...lngs);
+    const maxLng = Math.max(...lngs);
+
+    const padding = 80;
+    const width = this.options.width - padding * 2;
+    const height = this.options.height - padding * 2;
+
+    return (lat, lng) => {
+      const x = ((lng - minLng) / (maxLng - minLng)) * width + padding;
+      const y = ((maxLat - lat) / (maxLat - minLat)) * height + padding;
+      return { x, y };
+    };
+  }
+
+  createMapHTML() {
+    const project = this.projectCoordinates();
+
+    const mapHTML = `
+            <div class="interactive-map-wrapper">
+                <svg viewBox="0 0 ${this.options.width} ${this.options.height}" class="map-svg">
                     <defs>
-                        <radialGradient id="mapBg" cx="50%" cy="50%" r="60%">
-                            <stop offset="0%" style="stop-color:var(--cream);stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:var(--beige);stop-opacity:1" />
-                        </radialGradient>
-                        <filter id="shadow">
-                            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+                        <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#fdfcfa;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#f5f1e8;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#e8dcc4;stop-opacity:1" />
+                        </linearGradient>
+                        
+                        <filter id="markerShadow">
+                            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.25"/>
                         </filter>
-                        <filter id="glow">
-                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        
+                        <filter id="markerGlow">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
                             <feMerge>
                                 <feMergeNode in="coloredBlur"/>
                                 <feMergeNode in="SourceGraphic"/>
                             </feMerge>
                         </filter>
+                        
+                        <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(201, 168, 105, 0.08)" stroke-width="1"/>
+                        </pattern>
                     </defs>
                     
-                    <!-- Background -->
-                    <rect width="100%" height="100%" fill="url(#mapBg)" rx="8"/>
+                    <!-- Background with gradient -->
+                    <rect width="100%" height="100%" fill="url(#mapGradient)" rx="12"/>
+                    <rect width="100%" height="100%" fill="url(#gridPattern)" opacity="0.5"/>
                     
-                    <!-- Road network (stylized) -->
-                    ${this.createRoadNetwork(project)}
+                    <!-- Decorative border -->
+                    <rect width="100%" height="100%" fill="none" stroke="rgba(201, 168, 105, 0.3)" 
+                          stroke-width="3" rx="12" stroke-dasharray="10,5"/>
                     
-                    <!-- Landmarks container -->
+                    <!-- Connection lines -->
+                    <g id="connections" opacity="0.4"></g>
+                    
+                    <!-- Landmarks -->
                     <g id="landmarks"></g>
                 </svg>
             </div>
         `;
-        
-        this.container.innerHTML = mapHTML;
-        this.svg = this.container.querySelector('svg');
-        this.landmarksGroup = this.svg.querySelector('#landmarks');
-    }
-    
-    createRoadNetwork(project) {
-        // Create stylized road connections
-        const vista = project(-1.2159, 36.8389);
-        const bypass = project(-1.2165, 36.8417);
-        const westlands = project(-1.2644, 36.8123);
-        const twoRivers = project(-1.2028, 36.7939);
-        
-        return `
-            <!-- Northern Bypass (main highway) -->
-            <path d="M ${bypass.x - 100} ${bypass.y} L ${bypass.x + 100} ${bypass.y}" 
-                  stroke="var(--bronze)" stroke-width="4" opacity="0.6" stroke-linecap="round"/>
-            
-            <!-- Connection roads -->
-            <path d="M ${vista.x} ${vista.y} L ${bypass.x} ${bypass.y}" 
-                  stroke="var(--warm-gray)" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
-            <path d="M ${vista.x} ${vista.y} Q ${westlands.x + 50} ${westlands.y + 30} ${westlands.x} ${westlands.y}" 
-                  stroke="var(--warm-gray)" stroke-width="2" opacity="0.4" stroke-linecap="round" fill="none"/>
-            <path d="M ${vista.x} ${vista.y} Q ${twoRivers.x - 30} ${twoRivers.y + 20} ${twoRivers.x} ${twoRivers.y}" 
-                  stroke="var(--warm-gray)" stroke-width="2" opacity="0.4" stroke-linecap="round" fill="none"/>
-        `;
-    }
-    
-    createLandmarks() {
-        const project = this.projectCoordinates();
-        const vistaCoords = this.landmarks.find(l => l.id === '6040-vista');
-        
-        this.landmarks.forEach(landmark => {
-            // Calculate real distance
-            if (landmark.id !== '6040-vista') {
-                const distance = this.calculateDistance(
-                    vistaCoords.lat, vistaCoords.lng,
-                    landmark.lat, landmark.lng
-                );
-                landmark.calculatedDistance = this.formatDistance(distance);
-            }
-            
-            const coords = project(landmark.lat, landmark.lng);
-            const element = this.createLandmarkElement(landmark, coords);
-            this.landmarksGroup.appendChild(element);
-        });
-    }
-    
-    createLandmarkElement(landmark, coords) {
-        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        g.classList.add('landmark');
-        g.setAttribute('data-id', landmark.id);
-        g.style.cursor = 'pointer';
-        
-        // Pulse animation for primary location
-        if (landmark.isPrimary) {
-            const pulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            pulse.setAttribute('cx', coords.x);
-            pulse.setAttribute('cy', coords.y);
-            pulse.setAttribute('r', '15');
-            pulse.setAttribute('fill', 'none');
-            pulse.setAttribute('stroke', landmark.color);
-            pulse.setAttribute('stroke-width', '2');
-            pulse.setAttribute('opacity', '0.6');
-            
-            // Add animation
-            const animate = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
-            animate.setAttribute('attributeName', 'r');
-            animate.setAttribute('values', '15;25;15');
-            animate.setAttribute('dur', '3s');
-            animate.setAttribute('repeatCount', 'indefinite');
-            
-            const animateOpacity = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
-            animateOpacity.setAttribute('attributeName', 'opacity');
-            animateOpacity.setAttribute('values', '0.6;0;0.6');
-            animateOpacity.setAttribute('dur', '3s');
-            animateOpacity.setAttribute('repeatCount', 'indefinite');
-            
-            pulse.appendChild(animate);
-            pulse.appendChild(animateOpacity);
-            g.appendChild(pulse);
-        }
-        
-        // Main marker
-        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        circle.setAttribute('cx', coords.x);
-        circle.setAttribute('cy', coords.y);
-        circle.setAttribute('r', landmark.isPrimary ? '12' : '8');
-        circle.setAttribute('fill', landmark.color);
-        circle.setAttribute('stroke', 'white');
-        circle.setAttribute('stroke-width', '2');
-        circle.setAttribute('filter', 'url(#shadow)');
-        circle.classList.add('marker');
-        
-        // Icon
-        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        text.setAttribute('x', coords.x);
-        text.setAttribute('y', coords.y + 2);
-        text.setAttribute('text-anchor', 'middle');
-        text.setAttribute('dominant-baseline', 'middle');
-        text.setAttribute('font-size', landmark.isPrimary ? '14' : '10');
-        text.textContent = landmark.icon;
-        
-        // Label (for full mode only)
-        if (!this.options.isPreview) {
-            const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            label.setAttribute('x', coords.x + 15);
-            label.setAttribute('y', coords.y - 10);
-            label.setAttribute('font-family', 'Lato, sans-serif');
-            label.setAttribute('font-size', '12');
-            label.setAttribute('font-weight', '600');
-            label.setAttribute('fill', 'var(--charcoal)');
-            label.textContent = landmark.name;
-            g.appendChild(label);
-        }
-        
-        g.appendChild(circle);
-        g.appendChild(text);
-        
-        // Event handlers
-        this.addLandmarkEvents(g, landmark);
-        
-        return g;
-    }
-    
-    addLandmarkEvents(element, landmark) {
-        // Hover effects
-        element.addEventListener('mouseenter', (e) => {
-            const marker = element.querySelector('.marker');
-            marker.setAttribute('filter', 'url(#glow)');
-            marker.style.transform = 'scale(1.2)';
-            marker.style.transformOrigin = 'center';
-            this.showTooltip(e, landmark);
-        });
-        
-        element.addEventListener('mouseleave', () => {
-            const marker = element.querySelector('.marker');
-            marker.setAttribute('filter', 'url(#shadow)');
-            marker.style.transform = 'scale(1)';
-            this.hideTooltip();
-        });
-        
-        element.addEventListener('mousemove', (e) => {
-            if (this.tooltip) {
-                this.updateTooltipPosition(e);
-            }
-        });
-        
-        // Click handler
-        element.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (this.options.enableModal && !this.options.isPreview) {
-                this.showModal(landmark);
-            } else {
-                this.openDirections(landmark);
-            }
-        });
-    }
-    
-    // showTooltip(event, landmark) {
-    //     this.hideTooltip();
-        
-    //     this.tooltip = document.createElement('div');
-    //     this.tooltip.className = 'map-tooltip';
-        
-    //     const distance = landmark.calculatedDistance || landmark.distance;
-        
-    //     this.tooltip.innerHTML = `
-    //         <h4>${landmark.icon} ${landmark.name}</h4>
-    //         <p><strong>Distance:</strong> ${distance}</p>
-    //         <p><strong>Travel Time:</strong> ${landmark.time}</p>
-    //         ${!this.options.isPreview ? `<p>${landmark.description}</p>` : ''}
-    //     `;
-        
-    //     document.body.appendChild(this.tooltip);
-    //     this.updateTooltipPosition(event);
-    // }
 
-    showTooltip(event, landmark) {
+    this.container.innerHTML = mapHTML;
+    this.svg = this.container.querySelector(".map-svg");
+    this.connectionsGroup = this.svg.querySelector("#connections");
+    this.landmarksGroup = this.svg.querySelector("#landmarks");
+
+    this.drawConnections();
+  }
+
+  drawConnections() {
+    const project = this.projectCoordinates();
+    const vista = project(-1.2159, 36.8389);
+
+    this.landmarks.forEach((landmark) => {
+      if (landmark.id === "6040-vista") return;
+
+      const coords = project(landmark.lat, landmark.lng);
+
+      // Curved connection line
+      const midX = (vista.x + coords.x) / 2;
+      const midY = (vista.y + coords.y) / 2;
+      const controlX = midX + (Math.random() - 0.5) * 30;
+      const controlY = midY - 40;
+
+      const path = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "path"
+      );
+      path.setAttribute(
+        "d",
+        `M ${vista.x} ${vista.y} Q ${controlX} ${controlY} ${coords.x} ${coords.y}`
+      );
+      path.setAttribute("stroke", landmark.color);
+      path.setAttribute("stroke-width", "2");
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke-dasharray", "8,4");
+      path.setAttribute("class", "connection-line");
+      path.setAttribute("data-landmark", landmark.id);
+
+      this.connectionsGroup.appendChild(path);
+    });
+  }
+
+  createLandmarks() {
+    const project = this.projectCoordinates();
+
+    this.landmarks.forEach((landmark) => {
+      const coords = project(landmark.lat, landmark.lng);
+      const element = this.createLandmarkElement(landmark, coords);
+      this.landmarksGroup.appendChild(element);
+    });
+  }
+
+  createLandmarkElement(landmark, coords) {
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    g.classList.add("map-landmark");
+    g.setAttribute("data-id", landmark.id);
+
+    // Pulse ring for primary location
+    if (landmark.isPrimary) {
+      const pulseRing = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+      );
+      pulseRing.setAttribute("cx", coords.x);
+      pulseRing.setAttribute("cy", coords.y);
+      pulseRing.setAttribute("r", "20");
+      pulseRing.setAttribute("fill", "none");
+      pulseRing.setAttribute("stroke", landmark.color);
+      pulseRing.setAttribute("stroke-width", "3");
+      pulseRing.setAttribute("opacity", "0.5");
+      pulseRing.classList.add("pulse-ring");
+
+      // Pulse animation
+      const animate1 = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "animate"
+      );
+      animate1.setAttribute("attributeName", "r");
+      animate1.setAttribute("values", "20;35;20");
+      animate1.setAttribute("dur", "2.5s");
+      animate1.setAttribute("repeatCount", "indefinite");
+
+      const animate2 = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "animate"
+      );
+      animate2.setAttribute("attributeName", "opacity");
+      animate2.setAttribute("values", "0.5;0;0.5");
+      animate2.setAttribute("dur", "2.5s");
+      animate2.setAttribute("repeatCount", "indefinite");
+
+      pulseRing.appendChild(animate1);
+      pulseRing.appendChild(animate2);
+      g.appendChild(pulseRing);
+    }
+
+    // Main marker circle
+    const size = landmark.isPrimary ? 50 : 40;
+    const circle = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "circle"
+    );
+    circle.setAttribute("cx", coords.x);
+    circle.setAttribute("cy", coords.y);
+    circle.setAttribute("r", size / 2);
+    circle.setAttribute("fill", "white");
+    circle.setAttribute("stroke", landmark.color);
+    circle.setAttribute("stroke-width", "3");
+    circle.setAttribute("filter", "url(#markerShadow)");
+    circle.classList.add("marker-circle");
+
+    // Icon background
+    const iconBg = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "circle"
+    );
+    iconBg.setAttribute("cx", coords.x);
+    iconBg.setAttribute("cy", coords.y);
+    iconBg.setAttribute("r", size / 2 - 5);
+    iconBg.setAttribute("fill", landmark.color);
+    iconBg.setAttribute("opacity", "0.15");
+
+    // Icon
+    const icon = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    icon.setAttribute("x", coords.x);
+    icon.setAttribute("y", coords.y + 2);
+    icon.setAttribute("text-anchor", "middle");
+    icon.setAttribute("dominant-baseline", "middle");
+    icon.setAttribute("font-size", landmark.isPrimary ? "22" : "18");
+    icon.textContent = landmark.icon;
+    icon.classList.add("marker-icon");
+
+    // Label
+    if (!this.options.isPreview) {
+      const label = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "text"
+      );
+      label.setAttribute("x", coords.x);
+      label.setAttribute("y", coords.y + size + 15);
+      label.setAttribute("text-anchor", "middle");
+      label.setAttribute("font-family", "Lato, sans-serif");
+      label.setAttribute("font-size", "13");
+      label.setAttribute("font-weight", "600");
+      label.setAttribute("fill", "#3a3530");
+      label.textContent = landmark.name;
+      label.classList.add("marker-label");
+      g.appendChild(label);
+    }
+
+    g.appendChild(circle);
+    g.appendChild(iconBg);
+    g.appendChild(icon);
+
+    this.addLandmarkEvents(g, landmark);
+
+    return g;
+  }
+
+  addLandmarkEvents(element, landmark) {
+    element.style.cursor = "pointer";
+
+    element.addEventListener("mouseenter", (e) => {
+      this.activeMarker = landmark.id;
+      element.classList.add("active");
+
+      // Highlight connection
+      const connection = this.svg.querySelector(
+        `[data-landmark="${landmark.id}"]`
+      );
+      if (connection) connection.classList.add("active");
+
+      this.showTooltip(e, landmark);
+    });
+
+    element.addEventListener("mouseleave", () => {
+      element.classList.remove("active");
+
+      const connection = this.svg.querySelector(
+        `[data-landmark="${landmark.id}"]`
+      );
+      if (connection) connection.classList.remove("active");
+
+      this.hideTooltip();
+    });
+
+    element.addEventListener("mousemove", (e) => {
+      if (this.tooltip) this.updateTooltipPosition(e);
+    });
+
+    element.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (this.options.enableModal && !this.options.isPreview) {
+        this.showModal(landmark);
+      } else {
+        this.openDirections(landmark);
+      }
+    });
+  }
+
+  showTooltip(event, landmark) {
     this.hideTooltip();
-    
-    this.tooltip = document.createElement('div');
-    this.tooltip.className = 'map-tooltip';
-    
-    // Use calculated distance with clear labeling
-    const distance = landmark.calculatedDistance || landmark.distance;
-    const distanceLabel = landmark.id === '6040-vista' ? 'You are here' : `${distance} from 6040 Vista`;
-    
+
+    this.tooltip = document.createElement("div");
+    this.tooltip.className = "map-tooltip-modern";
+
+    const distance = landmark.calculatedDistance || "";
+    const time = landmark.calculatedTime || "";
+    const showDetails = landmark.id !== "6040-vista";
+
     this.tooltip.innerHTML = `
-        <h4>${landmark.icon} ${landmark.name}</h4>
-        <p><strong>Distance:</strong> ${distanceLabel}</p>
-        <p><strong>Travel Time:</strong> ${landmark.time}</p>
-        ${!this.options.isPreview ? `<p>${landmark.description}</p>` : ''}
-        ${!this.options.isPreview ? `<p style="margin-top: 0.75rem; font-size: 0.85rem; color: var(--sand);">Click for directions</p>` : ''}
-    `;
-    
+            <div class="tooltip-header">
+                <span class="tooltip-icon">${landmark.icon}</span>
+                <h4>${landmark.name}</h4>
+            </div>
+            ${
+              showDetails
+                ? `
+                <div class="tooltip-info">
+                    <div class="info-row">
+                        <span class="info-label">📍 Distance:</span>
+                        <span class="info-value">${distance}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">⏱️ Travel:</span>
+                        <span class="info-value">${time}</span>
+                    </div>
+                </div>
+            `
+                : '<p class="tooltip-tagline">Your premium investment destination</p>'
+            }
+            <p class="tooltip-description">${landmark.description}</p>
+            ${
+              !this.options.isPreview
+                ? '<p class="tooltip-cta">Click for directions →</p>'
+                : ""
+            }
+        `;
+
     document.body.appendChild(this.tooltip);
     this.updateTooltipPosition(event);
+
+    setTimeout(() => this.tooltip.classList.add("show"), 10);
+  }
+
+  updateTooltipPosition(event) {
+    if (!this.tooltip) return;
+
+    let x = event.clientX + 15;
+    let y = event.clientY - 10;
+
+    const rect = this.tooltip.getBoundingClientRect();
+
+    if (x + rect.width > window.innerWidth - 20) {
+      x = event.clientX - rect.width - 15;
     }
-    
-    updateTooltipPosition(event) {
-        if (!this.tooltip) return;
-        
-        const rect = this.container.getBoundingClientRect();
-        let x = event.clientX + 10;
-        let y = event.clientY - 10;
-        
-        // Keep tooltip in viewport
-        const tooltipRect = this.tooltip.getBoundingClientRect();
-        if (x + tooltipRect.width > window.innerWidth) {
-            x = event.clientX - tooltipRect.width - 10;
-        }
-        if (y < 0) {
-            y = event.clientY + 20;
-        }
-        
-        this.tooltip.style.left = x + 'px';
-        this.tooltip.style.top = y + 'px';
+
+    if (y < 20) {
+      y = event.clientY + 20;
+    } else if (y + rect.height > window.innerHeight - 20) {
+      y = window.innerHeight - rect.height - 20;
     }
-    
-    hideTooltip() {
-        if (this.tooltip) {
-            this.tooltip.remove();
-            this.tooltip = null;
-        }
+
+    this.tooltip.style.left = x + "px";
+    this.tooltip.style.top = y + "px";
+  }
+
+  hideTooltip() {
+    if (this.tooltip) {
+      this.tooltip.classList.remove("show");
+      setTimeout(() => {
+        if (this.tooltip) this.tooltip.remove();
+        this.tooltip = null;
+      }, 200);
     }
-    
-    showModal(landmark) {
-        const distance = landmark.calculatedDistance || landmark.distance;
-        
-        this.modal = document.createElement('div');
-        this.modal.className = 'landmark-info-modal';
-        this.modal.innerHTML = `
-            <div class="landmark-info-content">
-                <button class="close-info" aria-label="Close">×</button>
-                <h2>${landmark.icon} ${landmark.name}</h2>
-                <div class="landmark-distance">${distance} • ${landmark.time}</div>
-                <p>${landmark.details}</p>
-                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-                    <a href="${this.getDirectionsUrl(landmark)}" target="_blank" class="btn-primary" style="flex: 1; text-align: center;">
-                        Get Directions
+  }
+
+  showModal(landmark) {
+    const distance = landmark.calculatedDistance || "";
+    const time = landmark.calculatedTime || "";
+
+    this.modal = document.createElement("div");
+    this.modal.className = "landmark-modal";
+    this.modal.innerHTML = `
+            <div class="modal-overlay"></div>
+            <div class="modal-content-modern">
+                <button class="modal-close" aria-label="Close">×</button>
+                <div class="modal-header">
+                    <span class="modal-icon">${landmark.icon}</span>
+                    <h2>${landmark.name}</h2>
+                </div>
+                ${
+                  landmark.id !== "6040-vista"
+                    ? `
+                    <div class="modal-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Distance</span>
+                            <span class="stat-value">${distance}</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Travel Time</span>
+                            <span class="stat-value">${time}</span>
+                        </div>
+                    </div>
+                `
+                    : ""
+                }
+                <p class="modal-description">${landmark.details}</p>
+                <div class="modal-actions">
+                    <a href="${this.getDirectionsUrl(
+                      landmark
+                    )}" target="_blank" class="btn-modal-primary">
+                        🗺️ Get Directions
                     </a>
-                    <button class="btn-secondary" style="flex: 1;" onclick="this.closest('.landmark-info-modal').remove()">
+                    <button class="btn-modal-secondary" onclick="this.closest('.landmark-modal').remove()">
                         Close
                     </button>
                 </div>
             </div>
         `;
-        
-        document.body.appendChild(this.modal);
-        
-        // Event handlers
-        this.modal.querySelector('.close-info').addEventListener('click', () => {
-            this.modal.remove();
-        });
-        
-        this.modal.addEventListener('click', (e) => {
-            if (e.target === this.modal) {
-                this.modal.remove();
-            }
-        });
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.modal) {
-                this.modal.remove();
-            }
-        });
-    }
-    
-    openDirections(landmark) {
-        window.open(this.getDirectionsUrl(landmark), '_blank');
-    }
-    
-    getDirectionsUrl(landmark) {
-        const origin = '6040 Vista, Gitere, Northern Bypass, Nairobi';
-        const destination = `${landmark.name}, Nairobi, Kenya`;
-        return `https://www.google.com/maps/dir/${encodeURIComponent(origin)}/${encodeURIComponent(destination)}`;
-    }
-    
-    // createLegend() {
-    //     const legend = document.createElement('div');
-    //     legend.className = 'map-legend';
-    //     legend.innerHTML = `
-    //         <h4>Key Locations</h4>
-    //         <div class="legend-items">
-    //             ${this.landmarks.slice(0, 5).map(l => `
-    //                 <div class="legend-item">
-    //                     <span class="legend-icon">${l.icon}</span>
-    //                     <span>${l.name}</span>
-    //                 </div>
-    //             `).join('')}
-    //         </div>
-    //     `;
-    //     this.container.appendChild(legend);
-    // }
 
-    createLegend() {
-    const legend = document.createElement('div');
-    legend.className = 'map-legend';
+    document.body.appendChild(this.modal);
+    setTimeout(() => this.modal.classList.add("show"), 10);
+
+    const closeBtn = this.modal.querySelector(".modal-close");
+    const overlay = this.modal.querySelector(".modal-overlay");
+
+    closeBtn.addEventListener("click", () => this.closeModal());
+    overlay.addEventListener("click", () => this.closeModal());
+
+    document.addEventListener(
+      "keydown",
+      (this.handleEscape = (e) => {
+        if (e.key === "Escape") this.closeModal();
+      })
+    );
+  }
+
+  closeModal() {
+    if (this.modal) {
+      this.modal.classList.remove("show");
+      setTimeout(() => {
+        if (this.modal) this.modal.remove();
+        this.modal = null;
+      }, 300);
+      document.removeEventListener("keydown", this.handleEscape);
+    }
+  }
+
+  openDirections(landmark) {
+    window.open(this.getDirectionsUrl(landmark), "_blank");
+  }
+
+  getDirectionsUrl(landmark) {
+    const origin = "6040 Vista, Gitere, Northern Bypass, Nairobi";
+    const destination = `${landmark.name}, Nairobi, Kenya`;
+    return `https://www.google.com/maps/dir/${encodeURIComponent(
+      origin
+    )}/${encodeURIComponent(destination)}`;
+  }
+
+  createLegend() {
+    const legend = document.createElement("div");
+    legend.className = "map-legend-modern";
     legend.innerHTML = `
-        <h4>Key Locations</h4>
-        <div class="legend-items">
-            ${this.landmarks.slice(0, 6).map(l => `
-                <div class="legend-item">
-                    <span class="legend-icon">${l.icon}</span>
-                    <span>${l.name}</span>
-                </div>
-            `).join('')}
-        </div>
-    `;
-    
-    // Append to map container (not outer container) for proper positioning
-    const mapContainer = this.container.querySelector('.map-container');
-    if (mapContainer) {
-        mapContainer.appendChild(legend);
-    } else {
-        this.container.appendChild(legend);
-    }
-    }   
-    
-    setupEventListeners() {
-        // Handle resize
-        window.addEventListener('resize', () => {
-            this.hideTooltip();
-            // Optionally redraw map for better responsive behavior
-        });
-        
-        // Clean up on page unload
-        window.addEventListener('beforeunload', () => {
-            this.hideTooltip();
-            if (this.modal) this.modal.remove();
-        });
-    }
+            <h4>📍 Key Locations</h4>
+            <div class="legend-grid">
+                ${this.landmarks
+                  .map(
+                    (l) => `
+                    <div class="legend-item-modern" data-landmark="${l.id}">
+                        <span class="legend-icon-modern">${l.icon}</span>
+                        <div class="legend-info">
+                            <span class="legend-name">${l.name}</span>
+                            ${
+                              l.calculatedDistance
+                                ? `<span class="legend-distance">${l.calculatedDistance}</span>`
+                                : ""
+                            }
+                        </div>
+                    </div>
+                `
+                  )
+                  .join("")}
+            </div>
+        `;
+
+    this.container.appendChild(legend);
+
+    // Add hover interaction
+    legend.querySelectorAll(".legend-item-modern").forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        const landmarkId = item.dataset.landmark;
+        const marker = this.svg.querySelector(`[data-id="${landmarkId}"]`);
+        if (marker) marker.classList.add("active");
+
+        const connection = this.svg.querySelector(
+          `[data-landmark="${landmarkId}"]`
+        );
+        if (connection) connection.classList.add("active");
+      });
+
+      item.addEventListener("mouseleave", () => {
+        const landmarkId = item.dataset.landmark;
+        const marker = this.svg.querySelector(`[data-id="${landmarkId}"]`);
+        if (marker) marker.classList.remove("active");
+
+        const connection = this.svg.querySelector(
+          `[data-landmark="${landmarkId}"]`
+        );
+        if (connection) connection.classList.remove("active");
+      });
+    });
+  }
+
+  setupEventListeners() {
+    window.addEventListener("resize", () => {
+      this.hideTooltip();
+    });
+
+    window.addEventListener("beforeunload", () => {
+      this.hideTooltip();
+      this.closeModal();
+    });
+  }
 }
 
-// Auto-initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    // Full interactive map (location.html)
-    if (document.getElementById('locationInteractiveMap')) {
-        window.locationMap = new InteractiveMap('locationInteractiveMap', {
-            isPreview: false,
-            showLegend: true,
-            enableModal: true
-        });
-    }
-    
-    // Preview map (homepage)
-    if (document.getElementById('homeMapPreview')) {
-        window.homeMap = new InteractiveMap('homeMapPreview', {
-            isPreview: true,
-            showLegend: false,
-            enableModal: false,
-            height: 400
-        });
-    }
+// Auto-initialize
+document.addEventListener("DOMContentLoaded", function () {
+  if (document.getElementById("locationInteractiveMap")) {
+    window.locationMap = new InteractiveMap("locationInteractiveMap", {
+      isPreview: false,
+      showLegend: true,
+      enableModal: true,
+    });
+  }
+
+  if (document.getElementById("homeMapPreview")) {
+    window.homeMap = new InteractiveMap("homeMapPreview", {
+      isPreview: true,
+      showLegend: false,
+      enableModal: false,
+      height: 450,
+    });
+  }
 });
