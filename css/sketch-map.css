@@ -302,7 +302,7 @@
 /* Legend */
 .map-legend {
     position: absolute;
-    top: 120px;
+    /* top: 120px; */
     right: auto;
     background: rgba(255, 255, 255, 0.95);
     padding: 20px;
